@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Requests\Rules\UserRules;
+use App\Http\Requests\UserRequest;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->resolving(UserRequest::class, function (UserRequest $userRequest, Application $app) {
+            $userRequest->setUserRules($app->make(UserRules::class));
+        });
     }
 
     /**
@@ -19,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
     }
 }
