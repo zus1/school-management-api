@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Interface\CanBeActiveInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,20 +30,29 @@ use Zus1\Serializer\Attributes\Attributes;
     ['id', 'user:register', 'user:me'],
     ['email',
         'user:register', 'student:create', 'user:me', 'student:retrieve', 'student:collection',
-        'teacher:retrieve', 'teacher:collection', 'guardian:retrieve', 'guardian:collection', 'user:toggleActive'
+        'teacher:retrieve', 'teacher:collection', 'guardian:retrieve', 'guardian:collection',
+        'user:toggleActive', 'user:nestedEventCreate', 'user:nestedEventRetrieve'
     ],
     ['roles', 'user:register', 'student:create', 'user:me', 'teacher:retrieve'],
     ['first_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
         'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate',
         'student:update', 'student:retrieve', 'student:collection', 'teacher:update', 'teacher:retrieve',
-        'teacher:collection', 'guardian:update', 'guardian:retrieve', 'guardian:collection'
+        'teacher:collection', 'guardian:update', 'guardian:retrieve',
+        'guardian:collection', 'user:nestedEventCreate', 'user:nestedEventRetrieve',
+        'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
+        'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
         'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate',
         'student:update', 'student:retrieve', 'student:collection', 'teacher:update', 'teacher:retrieve',
-        'teacher:collection', 'guardian:update', 'guardian:retrieve', 'guardian:collection'
+        'teacher:collection', 'guardian:update', 'guardian:retrieve',
+        'guardian:collection', 'user:nestedEventCreate', 'user:nestedEventRetrieve',
+        'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
+        'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',
@@ -66,7 +77,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ],
     ['medias', 'user:me', 'student:retrieve', 'teacher:retrieve', 'guardian:retrieve']
 ])]
-class User extends Authenticatable
+class User extends Authenticatable implements CanBeActiveInterface
 {
     use HasFactory, Notifiable, Discriminator, Token;
 
@@ -107,5 +118,15 @@ class User extends Authenticatable
     public function hasOneOfRoles(array $roles): bool
     {
         return array_intersect($roles, $this->roles) !== [];
+    }
+
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class, 'creator_id', 'id');
+    }
+
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
     }
 }

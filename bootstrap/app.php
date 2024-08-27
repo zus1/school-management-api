@@ -16,9 +16,17 @@ return Application::configure(basePath: dirname(__DIR__))
             'custom-auth' => \Zus1\LaravelAuth\Middleware\CustomAuth::class,
             'custom-authorize' => \Zus1\LaravelAuth\Middleware\CustomAuthorize::class,
             'inject-user-parent' => \App\Http\Middleware\InjectUserParentMiddleware::class,
+            'inject-event' => \App\Http\Middleware\EventInjectMiddleware::class,
+            'inject-event-parent' => \App\Http\Middleware\EventInjectParentMiddleware::class
         ]);
-        $middleware->prependToGroup('api', [
-            //\App\Http\Middleware\InjectUserParentMiddleware::class
+        $middleware->priority([
+            //...$middleware->getGlobalMiddleware(),
+            \App\Http\Middleware\InjectUserParentMiddleware::class,
+            \App\Http\Middleware\EventInjectMiddleware::class,
+            \App\Http\Middleware\EventInjectParentMiddleware::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            //...$middleware->getMiddlewareGroups()['api'],
+            //...$middleware->getMiddlewareGroups()['web'],
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

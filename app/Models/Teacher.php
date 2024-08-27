@@ -19,14 +19,22 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $social_security_number
  */
 #[Attributes([
-    ['id', 'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate', 'teacher:retrieve', 'teacher:collection'],
+    ['id',
+        'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate', 'teacher:retrieve',
+        'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
+        'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
+        'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+    ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
     ['employment_ends_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
     ['social_security_number', 'user:register', 'user:me', 'user:meUpdate', 'teacher:update', 'teacher:retrieve'],
     ['parent',
         'user:register', 'user:me', 'user:meUpdate', 'teacher:nestedSchoolClassCreate',
-        'teacher:nestedSchoolClassUpdate', 'teacher:update', 'teacher:retrieve', 'teacher:collection'
+        'teacher:nestedSchoolClassUpdate', 'teacher:update', 'teacher:retrieve',
+        'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
+        'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
@@ -64,5 +72,10 @@ class Teacher extends User
     public function hasStudent(Student $student): bool
     {
         return $this->students()->where('students.id', $student->id)->exists();
+    }
+
+    public function subjectEvents(): HasMany
+    {
+        return $this->hasMany(SubjectEvent::class, 'teacher_id', 'id');
     }
 }

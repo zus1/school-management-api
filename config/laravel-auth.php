@@ -75,9 +75,22 @@ return [
             RouteName::GUARDIANS => 'collection',
             RouteName::USER_TOGGLE_ACTIVE => 'toggleActive',
             RouteName::ME_DELETE => 'meDelete',
+            RouteName::CALENDAR_CREATE => 'pass',
+            RouteName::CALENDAR_UPDATE => 'pass',
+            RouteName::CALENDAR_DELETE => 'pass',
+            RouteName::CALENDAR_TOGGLE_ACTIVE => 'pass',
+            RouteName::CALENDARS => 'pass',
+            RouteName::EVENT_CREATE => 'create',
+            RouteName::EVENT_UPDATE => 'update',
+            RouteName::EVENT_DELETE => 'delete',
+            RouteName::EVENT => 'retrieve',
+            RouteName::EVENTS => 'collection',
+            RouteName::EVENT_TOGGLE_NOTIFY => 'toggleNotify',
+            RouteName::EVENT_UPDATE_STATUS => 'updateStatus',
+            RouteName::EVENT_UPDATE_REPEATABLE_STATUS => 'updateRepeatableStatus',
         ],
         'possible_route_parameters' => [
-            'student', 'teacher', 'guardian', 'user'
+            'student', 'teacher', 'guardian', 'user', 'calendar', 'event',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -85,6 +98,8 @@ return [
             RouteName::TEACHERS => \App\Models\Teacher::class,
             RouteName::GUARDIANS => \App\Models\Guardian::class,
             RouteName::ME_DELETE => \App\Models\Guardian::class,
+            RouteName::CALENDARS => \App\Models\Calendar::class,
+            RouteName::EVENTS => \App\Models\Event::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

@@ -16,10 +16,16 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $guardian_id
  */
 #[Attributes([
-    ['id', 'student:create', 'student:onboard', 'user:me', 'student:retrieve', 'student:collection'],
+    ['id',
+        'student:create', 'student:onboard', 'user:me', 'student:retrieve',
+        'student:collection', 'user:nestedEventToggleNotify'
+    ],
     ['onboarded_at', 'student:onboard', 'student:retrieve'],
     ['last_change_at', 'student:update'],
-    ['parent', 'student:create', 'student:onboard', 'user:me', 'student:update', 'student:retrieve', 'student:collection'],
+    ['parent',
+        'student:create', 'student:onboard', 'user:me', 'student:update', 'student:retrieve',
+        'student:collection', 'user:nestedEventToggleNotify'
+    ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
 class Student extends User
