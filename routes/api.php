@@ -10,7 +10,7 @@ Route::middleware('custom-auth')->group(function () {
         Route::put('/students/{student}', \App\Http\Controllers\Student\Update::class)
             ->name(RouteName::STUDENT_UPDATE)
             ->where('student', '[0-9]+');
-        Route::delete('/student', \App\Http\Controllers\Student\Delete::class)
+        Route::delete('/student/{student}', \App\Http\Controllers\Student\Delete::class)
             ->name(RouteName::STUDENT_DELETE)
             ->where('student', '[0-9]+');
         Route::get('/students', \App\Http\Controllers\Student\RetrieveCollection::class)
@@ -51,7 +51,56 @@ Route::middleware('custom-auth')->group(function () {
 
         Route::delete('/me', \App\Http\Controllers\Me\Delete::class)
             ->name(RouteName::ME_DELETE);
+
+        Route::post('/calendars', \App\Http\Controllers\Calendar\Create::class)
+            ->name(RouteName::CALENDAR_CREATE);
+        Route::put('/calendars/{calendar}', \App\Http\Controllers\Calendar\Update::class)
+            ->name(RouteName::CALENDAR_UPDATE)
+            ->where('calendar', '[0-9]+');
+        Route::delete('/calendars/{calendar}', \App\Http\Controllers\Calendar\Delete::class)
+            ->name(RouteName::CALENDAR_DELETE)
+            ->where('calendar', '[0-9]+');
+        Route::get('/calendars', \App\Http\Controllers\Calendar\RetrieveCollection::class)
+            ->name(RouteName::CALENDARS);
+        Route::put('/calendars/{calendar}/active/{active}', \App\Http\Controllers\Calendar\ToggleActive::class)
+            ->name(RouteName::CALENDAR_TOGGLE_ACTIVE)
+            ->where('calendar', '[0-9]+')
+            ->where('active', 'true|false');
     });
+
+    Route::post('/events/{calendar}', \App\Http\Controllers\Event\Create::class)
+        ->name(RouteName::EVENT_CREATE)
+        ->where('calendar', '[0-9]+');
+    Route::put('/events/{event}', \App\Http\Controllers\Event\Update::class)
+        ->name(RouteName::EVENT_UPDATE)
+        ->where('event', '[0-9]+')
+        ->middleware('inject-event');
+    Route::delete('/events/{event}', \App\Http\Controllers\Event\Delete::class)
+        ->name(RouteName::EVENT_DELETE)
+        ->where('event', '[0-9]+')
+        ->middleware('inject-event');
+    Route::get('/events/calendar/{calendar}', \App\Http\Controllers\Event\RetrieveCollection::class)
+        ->name(RouteName::EVENTS)
+        ->where('calendar', '[0-9]+');
+    Route::get('/events/{event}', \App\Http\Controllers\Event\Retrieve::class)
+        ->name(RouteName::EVENT)
+        ->where('event', '[0-9]+')
+        ->middleware('inject-event');
+    Route::put('/events/{event}/status', \App\Http\Controllers\Event\UpdateStatus::class)
+        ->name(RouteName::EVENT_UPDATE_STATUS)
+        ->where('event', '[0-9]+')
+        ->middleware('inject-event-parent');
+    Route::put('/events/{event}/repeatable-status', \App\Http\Controllers\Event\UpdateRepeatableStatus::class)
+        ->name(RouteName::EVENT_UPDATE_REPEATABLE_STATUS)
+        ->where('event', '[0-9]+')
+        ->middleware('inject-event-parent');
+    Route::put('/events/{event}/toggle-notify/{user}/{action}', \App\Http\Controllers\Event\ToggleNotify::class)
+        ->name(RouteName::EVENT_TOGGLE_NOTIFY)
+        ->where('event', '[0-9]+')
+        ->where('user', '[0-9]+')
+        ->where('action', 'add|remove')
+        ->middleware(['inject-event-parent', 'inject-user-parent']);
+
 
     Route::get('/me', \App\Http\Controllers\Me\Me::class)
         ->name(RouteName::ME);

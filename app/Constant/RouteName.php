@@ -35,4 +35,19 @@ class RouteName
     public const SCHOOL_CLASS_UPDATE = 'school_class_update';
     public const SCHOOL_CLASS_DELETE = 'school_class_delete';
     public const SCHOOL_CLASSES = 'school_classes';
+
+    public const CALENDAR_CREATE = 'calendar_create';
+    public const CALENDAR_UPDATE = 'calendar_update';
+    public const CALENDAR_DELETE = 'calendar_delete';
+    public const CALENDAR_TOGGLE_ACTIVE = 'calendar_toggle_active';
+    public const CALENDARS = 'calendars';
+
+    public const EVENT_CREATE = 'event_create';
+    public const EVENT_UPDATE = 'event_update';
+    public const EVENT_DELETE = 'event_delete';
+    public const EVENT  = 'event';
+    public const EVENTS = 'events';
+    public const EVENT_UPDATE_STATUS = 'update_event_status';
+    public const EVENT_UPDATE_REPEATABLE_STATUS = 'update_event_repeatable_status';
+    public const EVENT_TOGGLE_NOTIFY = 'event_toggle_notify';
 }

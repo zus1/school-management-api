@@ -16,8 +16,15 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $school_year_id
  */
 #[Attributes([
-    ['id', 'schoolClass:create'],
-    ['name', 'schoolClass:create', 'schoolClass:update'],
+    ['id',
+        'schoolClass:create', 'classroomNestedSubjectEventRetrieve', 'schoolClass:nestedExamEventCreate',
+        'schoolClass:nestedExamEventRetrieve'
+    ],
+    ['name',
+        'schoolClass:create', 'schoolClass:update', 'schoolClass:nestedSubjectEventCreate',
+        'schoolClass:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
+        'schoolClass:nestedExamEventCreate', 'schoolClass:nestedExamEventRetrieve'
+    ],
     ['teacher', 'schoolClass:create', 'schoolClass:update'],
     ['schoolYear', 'schoolClass:create', 'schoolClass:update'],
 ])]
@@ -38,5 +45,10 @@ class SchoolClass extends Model
     public function students(): HasMany
     {
         return $this->hasMany(Student::class, 'school_class_id', 'id');
+    }
+
+    public function subjectEvents(): HasMany
+    {
+        return $this->hasMany(SubjectEvent::class, 'school_class_id', 'id');
     }
 }

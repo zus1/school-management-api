@@ -19,6 +19,7 @@ class ToggleActive
     {
         $active = $active === 'true';
 
+        /** @var User $user */
         $user = $this->repository->toggleActive($user, $active);
 
         return new JsonResponse(Serializer::normalize($user, 'user:toggleActive'));

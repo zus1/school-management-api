@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Models\User;
+use App\Trait\CanActivateModel;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Zus1\LaravelAuth\Models\Token;
@@ -10,6 +11,8 @@ use Zus1\LaravelBaseRepository\Repository\LaravelBaseRepository;
 
 class UserRepository extends LaravelBaseRepository
 {
+    use CanActivateModel;
+
     protected const MODEL = User::class;
 
     public function findByToken(Token $token): User
@@ -35,15 +38,6 @@ class UserRepository extends LaravelBaseRepository
     public function verifyPhone(User $user): User
     {
         $user->phone_verified = true;
-
-        $user->save();
-
-        return $user;
-    }
-
-    public function toggleActive(User $user, bool $active): User
-    {
-        $user->active = $active;
 
         $user->save();
 

@@ -71,6 +71,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'calendar_event' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/calendar-event.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
