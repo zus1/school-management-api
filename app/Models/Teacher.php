@@ -23,7 +23,9 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate', 'teacher:retrieve',
         'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectCreate', 'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -34,7 +36,9 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSchoolClassUpdate', 'teacher:update', 'teacher:retrieve',
         'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectCreate', 'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]

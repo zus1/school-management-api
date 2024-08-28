@@ -50,4 +50,13 @@ class RouteName
     public const EVENT_UPDATE_STATUS = 'update_event_status';
     public const EVENT_UPDATE_REPEATABLE_STATUS = 'update_event_repeatable_status';
     public const EVENT_TOGGLE_NOTIFY = 'event_toggle_notify';
+
+    public const SUBJECT_CREATE = 'subject_create';
+    public const SUBJECT_UPDATE = 'subject_update';
+    public const SUBJECT_DELETE = 'subject_delete';
+    public const SUBJECT_TOGGLE_LECTURER = 'subject_toggle_lecturer';
+    public const SUBJECT_TOGGLE_LECTURER_CLASSES = 'subject_toggle_lecturer_classes';
+
+    public const TEACHER_SUBJECT = 'teacher_subject';
+    public const TEACHER_SUBJECTS = 'teacher_subjects';
 }

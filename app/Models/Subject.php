@@ -13,10 +13,26 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $name
  * @property string $description
  * @property bool $is_elective
+ * @property int $school_year_id
  */
 #[Attributes([
-    ['id', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate', 'subject:nestedExamEventRetrieve'],
-    ['name', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate', 'subject:nestedExamEventRetrieve'],
+    ['id',
+        'subject:create', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
+        'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection', 'subject:toggleLecturer',
+        'subject:nestedTeacherSubjectRetrieve'
+    ],
+    ['name',
+        'subject:create', 'subject:update', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
+        'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection',
+        'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection', 'subjectNestedToggleLecturerClasses'
+    ],
+    ['description', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:nestedTeacherSubjectRetrieve'],
+    ['is_elective',
+        'subject:create', 'subject:update', 'subject:retrieve', 'subject:collection',
+        'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection'
+    ],
+    ['lecturers', 'subject:create', 'subject:retrieve', 'subject:toggleLecturer'],
+    ['schoolYear', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:collection']
 ])]
 class Subject extends Model
 {
