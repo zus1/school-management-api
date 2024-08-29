@@ -95,9 +95,14 @@ return [
             RouteName::SUBJECT_TOGGLE_LECTURER_CLASSES => 'pass',
             RouteName::TEACHER_SUBJECT => 'pass',
             RouteName::TEACHER_SUBJECTS => 'pass',
+            RouteName::CLASSROOM_CREATE => 'create',
+            RouteName::CLASSROOM_UPDATE => 'update',
+            RouteName::CLASSROOM_DELETE => 'delete',
+            RouteName::CLASSROOM => 'retrieve',
+            RouteName::CLASSROOMS => 'collection',
         ],
         'possible_route_parameters' => [
-            'student', 'teacher', 'guardian', 'user', 'calendar', 'event',
+            'student', 'teacher', 'guardian', 'user', 'calendar', 'event', 'classroom', 'subject', 'teacherSubject'
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -109,6 +114,8 @@ return [
             RouteName::EVENTS => \App\Models\Event::class,
             RouteName::SUBJECT_CREATE => \App\Models\Subject::class,
             RouteName::TEACHER_SUBJECTS => \App\Models\TeacherSubject::class,
+            RouteName::CLASSROOM_CREATE => \App\Models\Classroom::class,
+            RouteName::CLASSROOMS => \App\Models\Classroom::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

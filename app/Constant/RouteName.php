@@ -59,4 +59,10 @@ class RouteName
 
     public const TEACHER_SUBJECT = 'teacher_subject';
     public const TEACHER_SUBJECTS = 'teacher_subjects';
+
+    public const CLASSROOM_CREATE = 'classroom_create';
+    public const CLASSROOM_UPDATE = 'classroom_update';
+    public const CLASSROOM_DELETE = 'classroom_delete';
+    public const CLASSROOM = 'classroom';
+    public const CLASSROOMS = 'classrooms';
 }

@@ -19,17 +19,31 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $purpose
  */
 #[Attributes([
-    ['id', 'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve'],
-    ['name', 'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve'],
-    ['floor', 'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve'],
-    ['number', 'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate','classroom:nestedSubjectEventRetrieve'],
+    ['id',
+        'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
+        'classroom:create', 'classroom:retrieve', 'classroom:collection'
+    ],
+    ['name',
+        'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
+        'classroom:create', 'classroom:update', 'classroom:retrieve', 'classroom:collection'
+    ],
+    ['floor',
+        'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
+        'classroom:create', 'classroom:update', 'classroom:retrieve', 'classroom:collection'
+    ],
+    ['number',
+        'classroom:nestedSubjectEventCreate', 'classroom:nestedSubjectEventUpdate','classroom:nestedSubjectEventRetrieve',
+        'classroom:create', 'classroom:update', 'classroom:retrieve', 'classroom:collection'
+    ],
+    ['description', 'classroom:create', 'classroom:update', 'classroom:retrieve'],
+    ['max_capacity', 'classroom:create', 'classroom:update', 'classroom:retrieve'],
+    ['size', 'classroom:create', 'classroom:update', 'classroom:retrieve'],
+    ['number_of_seats', 'classroom:create', 'classroom:update', 'classroom:retrieve'],
+    ['purpose', 'classroom:create', 'classroom:update', 'classroom:retrieve'],
 ])]
 class Classroom extends Model
 {
     use HasFactory;
 
-    public function subjectEvents(): HasMany
-    {
-        return $this->hasMany(SubjectEvent::class, 'classroom_id', 'id');
-    }
+    public $timestamps = false;
 }

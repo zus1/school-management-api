@@ -122,6 +122,20 @@ Route::middleware('custom-auth')->group(function () {
             ->where('teacherSubject', '[0-9]+');
         Route::get('/teacher-subjects', \App\Http\Controllers\TeacherSubject\RetrieveCollection::class)
             ->name(RouteName::TEACHER_SUBJECTS);
+
+        Route::post('/classrooms',  \App\Http\Controllers\Classroom\Create::class)
+            ->name(RouteName::CLASSROOM_CREATE);
+        Route::put('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Update::class)
+            ->name(RouteName::CLASSROOM_UPDATE)
+            ->where('classroom', '[0-9]+');
+        Route::delete('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Delete::class)
+            ->name(RouteName::CLASSROOM_DELETE)
+            ->where('classroom', '[0-9]+');
+        Route::get('/classrooms', \App\Http\Controllers\Classroom\RetrieveCollection::class)
+            ->name(RouteName::CLASSROOMS);
+        Route::get('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Retrieve::class)
+            ->name(RouteName::CLASSROOM)
+            ->where('classroom', '[0-9]+');
     });
 
 
