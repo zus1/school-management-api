@@ -17,13 +17,16 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $employed_at
  * @property string $employment_ends_at
  * @property string $social_security_number
+ * @property int $school_class_id
  */
 #[Attributes([
     ['id',
         'teacher:nestedSchoolClassCreate', 'teacher:nestedSchoolClassUpdate', 'teacher:retrieve',
         'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -34,7 +37,10 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSchoolClassUpdate', 'teacher:update', 'teacher:retrieve',
         'teacher:collection', 'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
+        'teacher:nestedSubject'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
@@ -65,8 +71,8 @@ class Teacher extends User
 
     public function subjects(): BelongsToMany
     {
-        return $this->belongsToMany(Subject::class, 'teachers_subjects', 'teacher_id', 'subject_id')
-            ->using(TeacherSubject::class);
+        return $this->belongsToMany(Subject::class, 'teachers_subjects', 'teacher_id', 'subject_id');
+            //->using(TeacherSubject::class);
     }
 
     public function hasStudent(Student $student): bool

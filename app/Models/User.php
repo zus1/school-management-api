@@ -42,7 +42,10 @@ use Zus1\Serializer\Attributes\Attributes;
         'guardian:collection', 'user:nestedEventCreate', 'user:nestedEventRetrieve',
         'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
+        'teacher:nestedSubject'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -52,7 +55,10 @@ use Zus1\Serializer\Attributes\Attributes;
         'guardian:collection', 'user:nestedEventCreate', 'user:nestedEventRetrieve',
         'teacher:nestedSubjectEventCreate', 'teacher:nestedSubjectEventUpdate',
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
-        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve'
+        'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
+        'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
+        'teacher:nestedSubject'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',

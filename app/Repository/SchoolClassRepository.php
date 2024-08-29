@@ -27,6 +27,15 @@ class SchoolClassRepository extends LaravelBaseRepository
         return $this->createOrUpdate($schoolClass, $data);
     }
 
+    public function existsManyById(array $ids): bool
+    {
+        $builder = $this->getBuilder();
+
+        $existingIds = $builder->whereIn('id', $ids)->pluck('id')->all();
+
+        return array_diff($ids, $existingIds) === [];
+    }
+
     private function createOrUpdate(SchoolClass $schoolClass, array $data): SchoolClass
     {
         $schoolClass->name = $data['name'];

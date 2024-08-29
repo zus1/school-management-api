@@ -3,10 +3,13 @@
 namespace App\Dto;
 
 use App\Models\Media;
+use App\Trait\SimpleJsonSerialize;
 use Illuminate\Support\Str;
 
 class UploadResponseDto implements \JsonSerializable
 {
+    use SimpleJsonSerialize;
+
     private string $media;
     private string $mediaType;
     private bool $awsUploaded;
@@ -19,17 +22,5 @@ class UploadResponseDto implements \JsonSerializable
         $instance->awsUploaded = $awsUploaded;
 
         return $instance;
-    }
-
-    public function jsonSerialize(): array
-    {
-        $vars = get_object_vars($this);
-
-        $sanitized = [];
-        array_walk($vars, function (mixed $value, string $key) use (&$sanitized) {
-            $sanitized[Str::snake($key)] = $value;
-        });
-
-        return $sanitized;
     }
 }

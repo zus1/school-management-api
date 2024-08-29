@@ -18,15 +18,19 @@ use Zus1\Serializer\Attributes\Attributes;
 #[Attributes([
     ['id',
         'schoolClass:create', 'classroomNestedSubjectEventRetrieve', 'schoolClass:nestedExamEventCreate',
-        'schoolClass:nestedExamEventRetrieve'
+        'schoolClass:nestedExamEventRetrieve', 'schoolClass:nestedSubjectTeacherRetrieve'
     ],
     ['name',
         'schoolClass:create', 'schoolClass:update', 'schoolClass:nestedSubjectEventCreate',
         'schoolClass:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
-        'schoolClass:nestedExamEventCreate', 'schoolClass:nestedExamEventRetrieve'
+        'schoolClass:nestedExamEventCreate', 'schoolClass:nestedExamEventRetrieve',
+        'schoolClass:nestedSubjectTeacherRetrieve', 'schoolClass:nestedTeacherSubjectCollection'
     ],
     ['teacher', 'schoolClass:create', 'schoolClass:update'],
-    ['schoolYear', 'schoolClass:create', 'schoolClass:update'],
+    ['schoolYear',
+        'schoolClass:create', 'schoolClass:update', 'schoolClass:nestedSubjectTeacherRetrieve',
+        'schoolClass:nestedTeacherSubjectCollection'
+    ],
 ])]
 class SchoolClass extends Model
 {

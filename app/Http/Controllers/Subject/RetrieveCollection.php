@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Controllers\Subject;
+
+use App\Repository\SubjectRepository;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Zus1\LaravelBaseRepository\Controllers\BaseCollectionController;
+use Zus1\Serializer\Facade\Serializer;
+
+class RetrieveCollection extends BaseCollectionController
+{
+    public function __construct(SubjectRepository $repository)
+    {
+        parent::__construct($repository);
+    }
+
+    public function __invoke(Request $request): JsonResponse
+    {
+        $collection = $this->retrieveCollection($request);
+
+        return new JsonResponse(Serializer::normalize($collection, ['subject:collection', 'schoolYear:nestedSubjectCollection']));
+    }
+}
