@@ -24,15 +24,16 @@ use Zus1\Serializer\Attributes\Attributes;
     ['name',
         'subject:create', 'subject:update', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
         'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection',
-        'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection', 'subjectNestedToggleLecturerClasses'
+        'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection',
+        'subject:toggleLecturerClasses', 'subject:toggleLecturer'
     ],
     ['description', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:nestedTeacherSubjectRetrieve'],
     ['is_elective',
         'subject:create', 'subject:update', 'subject:retrieve', 'subject:collection',
         'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection'
     ],
-    ['lecturers', 'subject:create', 'subject:retrieve', 'subject:toggleLecturer'],
-    ['schoolYear', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:collection']
+    ['lecturers', 'subject:retrieve'],
+    ['schoolYear', 'subject:update', 'subject:retrieve', 'subject:collection']
 ])]
 class Subject extends Model
 {
@@ -45,8 +46,8 @@ class Subject extends Model
 
     public function lecturers(): BelongsToMany
     {
-        return $this->belongsToMany(Teacher::class, 'teachers_subjects', 'subject_id', 'teacher_id')
-            ->using(TeacherSubject::class);
+        return $this->belongsToMany(Teacher::class, 'teachers_subjects', 'subject_id', 'teacher_id');
+            //->using(TeacherSubject::class);
     }
 
     public function casts(): array

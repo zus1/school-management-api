@@ -30,7 +30,7 @@ class SubjectRepository extends LaravelBaseRepository
             $lecturerIds = array_keys($data['lecturer_ids']);
 
             foreach ($lecturerIds as $lecturerId) {
-                $this->addLecturer($subject, $lecturerId, $data['lecturer_ids'][$lecturerId]);
+                $this->addLecturer($subject, (int) $lecturerId, $data['lecturer_ids'][$lecturerId]);
             }
         }
 
@@ -67,8 +67,8 @@ class SubjectRepository extends LaravelBaseRepository
         Teacher $lecturer,
         string $action,
         array $schoolClassIds
-    ): ToggleLecturerClassesResponseDto {
-        if(!$subject->lecturers()->where('teachers.id', $lecturer->id)->exists()) {
+    ): Subject {
+        if(!$this->checkIfLecturerHasLectures($subject, $lecturer)) {
             throw new HttpException(400, 'Please add lecturer for subject before adding his/her classes');
         }
 
@@ -76,15 +76,21 @@ class SubjectRepository extends LaravelBaseRepository
             $this->addLecturer($subject, $lecturer, $schoolClassIds);
             $subject->lecturers()
                 ->wherePivotNull('school_class_id')
-                ->where('teachers.id', $lecturer->id)
-                ->delete();
+                ->detach($lecturer->id);
         }
         if($action === 'remove') {
             $subject->lecturers()->wherePivotIn('school_class_id', $schoolClassIds)->detach($lecturer->id);
-            $this->addLecturer($subject, $lecturer, schoolClassIds: []);
+            if(!$this->checkIfLecturerHasLectures($subject, $lecturer)) {
+                $this->addLecturer($subject, $lecturer, schoolClassIds: []);
+            }
         }
 
-        return ToggleLecturerClassesResponseDto::create($subject, $lecturer);
+        return $subject;
+    }
+
+    private function checkIfLecturerHasLectures(Subject $subject, Teacher $lecturer): bool
+    {
+        return $subject->lecturers()->where('teachers.id', $lecturer->id)->exists();
     }
 
     private function addLecturer(Subject $subject, Teacher|int $lecturerId, array $schoolClassIds): void

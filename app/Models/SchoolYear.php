@@ -14,12 +14,13 @@ use Zus1\Serializer\Attributes\Attributes;
 #[Attributes([
     ['id',
         'schoolYear:nestedSchoolClassCreate', 'schoolYear:nestedSchoolClassUpdate', 'schoolYear:nestedSubjectCreate',
-        'schoolYear:nestedSubjectUpdate', 'schoolYear:nestedSubjectRetrieve', 'schoolYear:nestedTeacherSubjectRetrieve'
+        'schoolYear:nestedSubjectUpdate', 'schoolYear:nestedSubjectRetrieve', 'schoolYear:nestedTeacherSubjectRetrieve',
+        'schoolYear:nestedSubject'
     ],
     ['year',
         'schoolYear:nestedSchoolClassCreate', 'schoolYear:nestedSchoolClassUpdate', 'schoolYear:nestedSubjectCreate',
         'schoolYear:nestedSubjectUpdate', 'schoolYear:nestedSubjectRetrieve', 'schoolYear:nestedSubjectCollection',
-        'schoolYear:nestedTeacherSubjectRetrieve', 'schoolYear:nestedTeacherSubjectCollection'
+        'schoolYear:nestedTeacherSubjectRetrieve', 'schoolYear:nestedTeacherSubjectCollection', 'schoolYear:nestedSubject'
     ],
 ])]
 class SchoolYear extends Model

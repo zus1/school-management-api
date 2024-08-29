@@ -99,30 +99,32 @@ Route::middleware('custom-auth')->group(function () {
             ->where('user', '[0-9]+')
             ->where('action', 'add|remove')
             ->middleware(['inject-event-parent', 'inject-user-parent']);
+
+        Route::post('/subjects', \App\Http\Controllers\Subject\Create::class)
+            ->name(RouteName::SUBJECT_CREATE);
+        Route::put('/subjects/{subject}', \App\Http\Controllers\Subject\Update::class)
+            ->name(RouteName::SUBJECT_UPDATE)
+            ->where('subject', '[0-9]+');
+        Route::delete('/subjects/{subject}', \App\Http\Controllers\Subject\Delete::class)
+            ->name(RouteName::SUBJECT_DELETE)
+            ->where('subject', '[0-9]+');
+        Route::put('/subjects/{subject}/teachers/{teacher}', \App\Http\Controllers\Subject\ToggleLecturer::class)
+            ->name(RouteName::SUBJECT_TOGGLE_LECTURER)
+            ->where('subject', '[0-9]+')
+            ->where('teacher', '[0-9]+');
+        Route::put('/subjects/{subject}/teachers/{teacher}/school-classes', \App\Http\Controllers\Subject\ToggleLecturerClasses::class)
+            ->name(RouteName::SUBJECT_TOGGLE_LECTURER_CLASSES)
+            ->where('subject', '[0-9]+')
+            ->where('teacher', '[0-9]+');
+
+        Route::get('teacher-subjects/{teacherSubject}', \App\Http\Controllers\TeacherSubject\Retrieve::class)
+            ->name(RouteName::TEACHER_SUBJECT)
+            ->where('teacherSubject', '[0-9]+');
+        Route::get('/teacher-subjects', \App\Http\Controllers\TeacherSubject\RetrieveCollection::class)
+            ->name(RouteName::TEACHER_SUBJECTS);
     });
 
-    Route::post('/subjects', \App\Http\Controllers\Subject\Create::class)
-        ->name(RouteName::SUBJECT_CREATE);
-    Route::put('/subjects/{subject}', \App\Http\Controllers\Subject\Update::class)
-        ->name(RouteName::SUBJECT_UPDATE)
-        ->where('subject', '[0-9]+');
-    Route::delete('/subjects/{subject}', \App\Http\Controllers\Subject\Delete::class)
-        ->name(RouteName::SUBJECT_DELETE)
-        ->where('subject', '[0-9]+');
-    Route::put('/subject/{subject}/teacher/{teacher}', \App\Http\Controllers\Subject\ToggleLecturer::class)
-        ->name(RouteName::SUBJECT_TOGGLE_LECTURER)
-        ->where('subject', '[0-9]+')
-        ->where('teacher', '[0-9]+');
-    Route::put('/subjects/{subject}/teachers/{teacher}/school-classes', \App\Http\Controllers\Subject\ToggleLecturerClasses::class)
-        ->name(RouteName::SUBJECT_TOGGLE_LECTURER_CLASSES)
-        ->where('subject', '[0-9]+')
-        ->where('teacher', '[0-9]+');
 
-    Route::get('teacher-subjects/{teacherSubject}', \App\Http\Controllers\TeacherSubject\Retrieve::class)
-        ->name(RouteName::TEACHER_SUBJECT)
-        ->where('teacherSubject', '[0-9]+');
-    Route::get('/teacher-subjects', \App\Http\Controllers\TeacherSubject\RetrieveCollection::class)
-        ->name(RouteName::TEACHER_SUBJECTS);
 
     Route::get('/me', \App\Http\Controllers\Me\Me::class)
         ->name(RouteName::ME);

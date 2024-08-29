@@ -3,12 +3,12 @@
 namespace App\Dto;
 
 use App\Models\Media;
-use App\Trait\JsonSerializeSnaked;
+use App\Trait\SimpleJsonSerialize;
 use Illuminate\Support\Str;
 
 class UploadResponseDto implements \JsonSerializable
 {
-    use JsonSerializeSnaked;
+    use SimpleJsonSerialize;
 
     private string $media;
     private string $mediaType;

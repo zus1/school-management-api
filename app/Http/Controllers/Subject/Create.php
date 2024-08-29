@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Subject;
 
+use App\Dto\SubjectWithLecturersResponseDto;
 use App\Http\Requests\SubjectRequest;
 use App\Repository\SubjectRepository;
 use Illuminate\Http\JsonResponse;
@@ -18,7 +19,6 @@ class Create
     {
         $subject = $this->repository->create($request->input());
 
-        return new JsonResponse(Serializer::normalize($subject,
-            ['subject:create', 'teacher:nestedSubjectCreate', 'schoolYear:nestedSubjectCreate']));
+        return new JsonResponse(SubjectWithLecturersResponseDto::create($subject, 'subject:create'));
     }
 }

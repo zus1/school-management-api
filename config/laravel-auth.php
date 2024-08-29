@@ -88,6 +88,13 @@ return [
             RouteName::EVENT_TOGGLE_NOTIFY => 'toggleNotify',
             RouteName::EVENT_UPDATE_STATUS => 'updateStatus',
             RouteName::EVENT_UPDATE_REPEATABLE_STATUS => 'updateRepeatableStatus',
+            RouteName::SUBJECT_CREATE => 'pass',
+            RouteName::SUBJECT_UPDATE => 'pass',
+            RouteName::SUBJECT_DELETE => 'pass',
+            RouteName::SUBJECT_TOGGLE_LECTURER => 'pass',
+            RouteName::SUBJECT_TOGGLE_LECTURER_CLASSES => 'pass',
+            RouteName::TEACHER_SUBJECT => 'pass',
+            RouteName::TEACHER_SUBJECTS => 'pass',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'event',
@@ -100,6 +107,8 @@ return [
             RouteName::ME_DELETE => \App\Models\Guardian::class,
             RouteName::CALENDARS => \App\Models\Calendar::class,
             RouteName::EVENTS => \App\Models\Event::class,
+            RouteName::SUBJECT_CREATE => \App\Models\Subject::class,
+            RouteName::TEACHER_SUBJECTS => \App\Models\TeacherSubject::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

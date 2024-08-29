@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Subject;
 
+use App\Dto\SubjectWithLecturersResponseDto;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Repository\SubjectRepository;
@@ -22,9 +23,9 @@ class ToggleLecturer
             subject: $subject,
             lecturer: $teacher,
             action: $request->query('action'),
-            schoolClassIds: $request->input('school_class_ids'),
+            schoolClassIds: $request->input('school_class_ids', []),
         );
 
-        return new JsonResponse(Serializer::normalize($subject, ['subject:toggleLecturer', 'teacher:nestedSubjectToggleLecturer']));
+        return new JsonResponse(SubjectWithLecturersResponseDto::create($subject, 'subject:toggleLecturer'));
     }
 }

@@ -4,12 +4,12 @@ namespace App\Dto\Repository;
 
 use App\Models\Subject;
 use App\Models\Teacher;
-use App\Trait\JsonSerializeSnaked;
+use App\Trait\SimpleJsonSerialize;
 use Zus1\Serializer\Facade\Serializer;
 
 class ToggleLecturerClassesResponseDto implements \JsonSerializable
 {
-    use JsonSerializeSnaked;
+    use SimpleJsonSerialize;
 
     private array $subject;
     private array $lecturer;

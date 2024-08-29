@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'inject-event' => \App\Http\Middleware\EventInjectMiddleware::class,
             'inject-event-parent' => \App\Http\Middleware\EventInjectParentMiddleware::class
         ]);
+        $middleware->appendToGroup('api', [
+            \App\Http\Middleware\ConvertResponseKeysToSnakeCase::class,
+        ]);
         $middleware->priority([
             //...$middleware->getGlobalMiddleware(),
             \App\Http\Middleware\InjectUserParentMiddleware::class,

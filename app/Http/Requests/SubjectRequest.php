@@ -50,29 +50,36 @@ class SubjectRequest extends FormRequest
 
     private function createRules(): array
     {
+        $this->additionalCreateRules();
+
         return [
             ...$this->sharedRules(),
             'lecturer_ids' => 'array',
-            'lecturer_ids.*' => function (string $attribute, array $lecturerIdClassIds, \Closure $fails) {
-                $lecturerId = array_key_first($lecturerIdClassIds);
-                $schoolClassIds = $lecturerIdClassIds[$lecturerId];
-
-                if(!is_int($lecturerId)) {
-                    $fails('Lecturer id must be integer');
-                }
-
-                if(array_filter($schoolClassIds, 'is_int') !== $schoolClassIds) {
-                    $fails('All school ids must be integers');
-                }
-
-                if($this->teacherRepository->findOneBy(['id' => $lecturerId]) === null) {
-                    $fails('Lecturer id must exist in teachers table');
-                }
-                if($this->schoolClassRepository->existsManyById($schoolClassIds) === false) {
-                    $fails('School class ids must exist in school_classes table');
-                }
-            }
         ];
+    }
+
+    private function additionalCreateRules(): void
+    {
+        if(($lecturerIds = $this->input('request_ids')) === null) {
+            return;
+        }
+
+        $lecturerId = array_key_first($lecturerIds);
+        $schoolClasses = $lecturerIds[$lecturerId];
+
+        if(!is_int($lecturerId)) {
+            throw new HttpException(422, 'Lecturer id must be integer');
+        }
+        if(array_filter($schoolClasses, 'is_int') !== $schoolClasses) {
+            throw new HttpException(422, 'School class id must be integer');
+        }
+
+        if($this->teacherRepository->findOneBy(['id' => $lecturerId]) === null) {
+            throw new HttpException('Lecturer id must be valid id from lecturers table');
+        }
+        if($this->schoolClassRepository->existsManyById($schoolClasses) === false) {
+            throw new HttpException(422, 'School class id must be valid id from school_classes table');
+        }
     }
 
     private function toggleRules(bool $schoolClassesRequired = false): array
