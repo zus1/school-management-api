@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Dto\Repository\ToggleLecturerClassesResponseDto;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Symfony\Component\HttpKernel\Exception\HttpException;
