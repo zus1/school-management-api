@@ -10,6 +10,7 @@ class Retrieve
 {
     public function __invoke(Classroom $classroom): JsonResponse
     {
-        return new JsonResponse(Serializer::normalize($classroom, 'classroom:retrieve'));
+        return new JsonResponse(Serializer::normalize($classroom,
+            ['classroom:retrieve', 'equipment:nestedClassroomRetrieve']));
     }
 }

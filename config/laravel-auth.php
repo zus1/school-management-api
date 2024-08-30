@@ -100,9 +100,17 @@ return [
             RouteName::CLASSROOM_DELETE => 'delete',
             RouteName::CLASSROOM => 'retrieve',
             RouteName::CLASSROOMS => 'collection',
+            RouteName::CLASSROOM_TOGGLE_EQUIPMENT => 'toggleEquipment',
+            RouteName::CLASSROOM_UPDATE_EQUIPMENT_QUANTITY => 'updateEquipmentQuality',
+            RouteName::EQUIPMENT_CREATE => 'pass',
+            RouteName::EQUIPMENT_UPDATE => 'pass',
+            RouteName::EQUIPMENT_DELETE => 'pass',
+            RouteName::EQUIPMENT => 'pass',
+            RouteName::EQUIPMENTS => 'pass',
         ],
         'possible_route_parameters' => [
-            'student', 'teacher', 'guardian', 'user', 'calendar', 'event', 'classroom', 'subject', 'teacherSubject'
+            'student', 'teacher', 'guardian', 'user', 'calendar',
+            'event', 'classroom', 'subject', 'teacherSubject', 'equipment',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -116,6 +124,8 @@ return [
             RouteName::TEACHER_SUBJECTS => \App\Models\TeacherSubject::class,
             RouteName::CLASSROOM_CREATE => \App\Models\Classroom::class,
             RouteName::CLASSROOMS => \App\Models\Classroom::class,
+            RouteName::EQUIPMENT_CREATE => \App\Models\Equipment::class,
+            RouteName::EQUIPMENTS => \App\Models\Equipment::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

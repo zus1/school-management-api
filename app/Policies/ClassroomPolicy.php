@@ -22,6 +22,15 @@ class ClassroomPolicy
         return $user->hasRole(Roles::ADMIN);
     }
 
+    public function toggleEquipment(User $user): bool    {
+        return $user->hasRole(Roles::ADMIN);
+    }
+
+    public function updateEquipmentQuantity(User $user): bool
+    {
+        return $user->hasRole(Roles::ADMIN);
+    }
+
     public function retrieve(User $user): bool
     {
         return $user->hasRole(Roles::ADMIN) || $user->hasRole(Roles::TEACHER);

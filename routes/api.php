@@ -136,6 +136,30 @@ Route::middleware('custom-auth')->group(function () {
         Route::get('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Retrieve::class)
             ->name(RouteName::CLASSROOM)
             ->where('classroom', '[0-9]+');
+        Route::put('/classrooms/{classroom}/equipments/{equipment}', \App\Http\Controllers\Classroom\ToggleEquipment::class)
+            ->name(RouteName::CLASSROOM_TOGGLE_EQUIPMENT)
+            ->where('classroom', '[0-9]+')
+            ->where('equipment', '[0-9]+');
+        Route::put(
+            '/classrooms/{classroom}/equipments/{equipment}/quantity',
+            \App\Http\Controllers\Classroom\UpdateEquipmentQuantity::class
+        )->name(RouteName::CLASSROOM_UPDATE_EQUIPMENT_QUANTITY)
+            ->where('classroom', '[0-9]+')
+            ->where('equipment', '[0-9]+');
+
+        Route::post('/equipments', \App\Http\Controllers\Equipment\Create::class)
+            ->name(RouteName::EQUIPMENT_CREATE);
+        Route::put('/equipments/{equipment}', \App\Http\Controllers\Equipment\Update::class)
+            ->name(RouteName::EQUIPMENT_UPDATE)
+            ->where('equipment', '[0-9]+');
+        Route::delete('/equipments/{equipment}', \App\Http\Controllers\Equipment\Delete::class)
+            ->name(RouteName::EQUIPMENT_DELETE)
+            ->where('equipment', '[0-9]+');
+        Route::get('/equipments', \App\Http\Controllers\Equipment\RetrieveCollection::class)
+            ->name(RouteName::EQUIPMENTS);
+        Route::get('/equipments/{equipment}', \App\Http\Controllers\Equipment\Retrieve::class)
+            ->name(RouteName::EQUIPMENT)
+            ->where('equipment', '[0-9]+');
     });
 
 
