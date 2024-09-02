@@ -122,6 +122,44 @@ Route::middleware('custom-auth')->group(function () {
             ->where('teacherSubject', '[0-9]+');
         Route::get('/teacher-subjects', \App\Http\Controllers\TeacherSubject\RetrieveCollection::class)
             ->name(RouteName::TEACHER_SUBJECTS);
+
+        Route::post('/classrooms',  \App\Http\Controllers\Classroom\Create::class)
+            ->name(RouteName::CLASSROOM_CREATE);
+        Route::put('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Update::class)
+            ->name(RouteName::CLASSROOM_UPDATE)
+            ->where('classroom', '[0-9]+');
+        Route::delete('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Delete::class)
+            ->name(RouteName::CLASSROOM_DELETE)
+            ->where('classroom', '[0-9]+');
+        Route::get('/classrooms', \App\Http\Controllers\Classroom\RetrieveCollection::class)
+            ->name(RouteName::CLASSROOMS);
+        Route::get('/classrooms/{classroom}', \App\Http\Controllers\Classroom\Retrieve::class)
+            ->name(RouteName::CLASSROOM)
+            ->where('classroom', '[0-9]+');
+        Route::put('/classrooms/{classroom}/equipments/{equipment}', \App\Http\Controllers\Classroom\ToggleEquipment::class)
+            ->name(RouteName::CLASSROOM_TOGGLE_EQUIPMENT)
+            ->where('classroom', '[0-9]+')
+            ->where('equipment', '[0-9]+');
+        Route::put(
+            '/classrooms/{classroom}/equipments/{equipment}/quantity',
+            \App\Http\Controllers\Classroom\UpdateEquipmentQuantity::class
+        )->name(RouteName::CLASSROOM_UPDATE_EQUIPMENT_QUANTITY)
+            ->where('classroom', '[0-9]+')
+            ->where('equipment', '[0-9]+');
+
+        Route::post('/equipments', \App\Http\Controllers\Equipment\Create::class)
+            ->name(RouteName::EQUIPMENT_CREATE);
+        Route::put('/equipments/{equipment}', \App\Http\Controllers\Equipment\Update::class)
+            ->name(RouteName::EQUIPMENT_UPDATE)
+            ->where('equipment', '[0-9]+');
+        Route::delete('/equipments/{equipment}', \App\Http\Controllers\Equipment\Delete::class)
+            ->name(RouteName::EQUIPMENT_DELETE)
+            ->where('equipment', '[0-9]+');
+        Route::get('/equipments', \App\Http\Controllers\Equipment\RetrieveCollection::class)
+            ->name(RouteName::EQUIPMENTS);
+        Route::get('/equipments/{equipment}', \App\Http\Controllers\Equipment\Retrieve::class)
+            ->name(RouteName::EQUIPMENT)
+            ->where('equipment', '[0-9]+');
     });
 
 

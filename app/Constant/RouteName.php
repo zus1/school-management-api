@@ -59,4 +59,18 @@ class RouteName
 
     public const TEACHER_SUBJECT = 'teacher_subject';
     public const TEACHER_SUBJECTS = 'teacher_subjects';
+
+    public const CLASSROOM_CREATE = 'classroom_create';
+    public const CLASSROOM_UPDATE = 'classroom_update';
+    public const CLASSROOM_DELETE = 'classroom_delete';
+    public const CLASSROOM = 'classroom';
+    public const CLASSROOMS = 'classrooms';
+    public const CLASSROOM_TOGGLE_EQUIPMENT = 'classroom_toggle_equipment';
+    public const CLASSROOM_UPDATE_EQUIPMENT_QUANTITY = 'classroom_update_equipment_quantity';
+
+    public const EQUIPMENT_CREATE = 'equipment_create';
+    public const EQUIPMENT_UPDATE = 'equipment_update';
+    public const EQUIPMENT_DELETE = 'equipment_delete';
+    public const EQUIPMENT = 'equipment';
+    public const EQUIPMENTS = 'equipments';
 }
