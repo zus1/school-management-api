@@ -15,11 +15,13 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $subject_id
  * @property int $grade
  * @property string $comment
+ * @property bool $is_final
  */
 #[Attributes([
     ['id', 'grade:create', 'grade:collection'],
     ['grade', 'grade:create', 'grade:update', 'grade:collection'],
     ['comment', 'grade:create', 'grade:update', 'grade:collection'],
+    ['is_final', 'grade:create', 'grade:collection', 'grade:update'],
     ['teacher', 'grade:create', 'grade:collection'],
     ['student', 'grade:create', 'grade:collection'],
     ['schoolClass', 'grade:create', 'grade:collection'],

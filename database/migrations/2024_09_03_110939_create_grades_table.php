@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->tinyInteger('grade');
             $table->string('comment')->nullable();
+            $table->tinyInteger('is_final')->default(0);
             $table->foreign('teacher_id')->references('id')->on('teachers');
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete();
             $table->foreign('school_class_id')->references('id')->on('school_classes')->cascadeOnDelete();

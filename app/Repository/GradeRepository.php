@@ -46,6 +46,7 @@ class GradeRepository extends LaravelBaseRepository
     {
         $grade->grade = $data['grade'];
         $grade->comment = $data['comment'] ?? null;
+        $grade->is_final = $data['is_final'] ?? false;
     }
 
     private function associateTeacher(Grade $grade): void
