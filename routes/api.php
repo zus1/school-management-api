@@ -160,6 +160,24 @@ Route::middleware('custom-auth')->group(function () {
         Route::get('/equipments/{equipment}', \App\Http\Controllers\Equipment\Retrieve::class)
             ->name(RouteName::EQUIPMENT)
             ->where('equipment', '[0-9]+');
+
+        Route::post('/messages/recipient/{recipient}', \App\Http\Controllers\Message\Create::class)
+            ->name(RouteName::MESSAGE_CREATE)
+            ->where('recipient', '[0-9]+')
+            ->middleware('inject-message-recipient');
+        Route::put('/messages/{message}', \App\Http\Controllers\Message\Update::class)
+            ->name(RouteName::MESSAGE_UPDATE)
+            ->where('message', '[0-9]+');
+        Route::delete('/messages/{message}', \App\Http\Controllers\Message\Delete::class)
+            ->name(RouteName::MESSAGE_DELETE)
+            ->where('message', '[0-9]+');
+        Route::get('/messages', \App\Http\Controllers\Message\RetrieveCollection::class)
+            ->name(RouteName::MESSAGES);
+        Route::get('/messages/{message}', \App\Http\Controllers\Message\Retrieve::class)
+            ->name(RouteName::MESSAGE)
+            ->where('message', '[0-9]+');
+        Route::put('/messages/mark-as-read', \App\Http\Controllers\Message\MarkAsRead::class)
+            ->name(RouteName::MESSAGES_MARK_AS_READ);
     });
 
 
