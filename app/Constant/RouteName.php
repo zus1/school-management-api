@@ -73,4 +73,11 @@ class RouteName
     public const EQUIPMENT_DELETE = 'equipment_delete';
     public const EQUIPMENT = 'equipment';
     public const EQUIPMENTS = 'equipments';
+
+    public const MESSAGE_CREATE = 'message_create';
+    public const MESSAGE_UPDATE = 'message_update';
+    public const MESSAGE_DELETE = 'message_delete';
+    public const MESSAGES = 'messages';
+    public const MESSAGE = 'message';
+    public const MESSAGES_MARK_AS_READ = 'messages_mark_as_read';
 }

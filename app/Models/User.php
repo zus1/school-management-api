@@ -45,7 +45,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject'
+        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -58,7 +58,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject'
+        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',
@@ -134,5 +134,15 @@ class User extends Authenticatable implements CanBeActiveInterface
     public function setActive(bool $active): void
     {
         $this->active = $active;
+    }
+
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'sender_id', 'id');
+    }
+
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'recipient_id', 'id');
     }
 }

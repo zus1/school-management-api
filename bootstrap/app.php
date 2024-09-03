@@ -17,7 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'custom-authorize' => \Zus1\LaravelAuth\Middleware\CustomAuthorize::class,
             'inject-user-parent' => \App\Http\Middleware\InjectUserParentMiddleware::class,
             'inject-event' => \App\Http\Middleware\EventInjectMiddleware::class,
-            'inject-event-parent' => \App\Http\Middleware\EventInjectParentMiddleware::class
+            'inject-event-parent' => \App\Http\Middleware\EventInjectParentMiddleware::class,
+            'inject-message-recipient' => \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class
         ]);
         $middleware->appendToGroup('api', [
             \App\Http\Middleware\ConvertResponseKeysToSnakeCase::class,
@@ -27,6 +28,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\InjectUserParentMiddleware::class,
             \App\Http\Middleware\EventInjectMiddleware::class,
             \App\Http\Middleware\EventInjectParentMiddleware::class,
+            \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             //...$middleware->getMiddlewareGroups()['api'],
             //...$middleware->getMiddlewareGroups()['web'],

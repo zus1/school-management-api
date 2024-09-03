@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\User;
 use App\Trait\CanActivateModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Zus1\LaravelAuth\Models\Token;
@@ -34,12 +35,35 @@ class UserRepository extends LaravelBaseRepository
         return $user->child()->first();
     }
 
+    public function findAuthParent(): User
+    {
+        /** @var User $child */
+        $child = Auth::user();
+
+        return $child->parent()->first();
+    }
 
     public function verifyPhone(User $user): User
     {
         $user->phone_verified = true;
 
         $user->save();
+
+        return $user;
+    }
+
+    public function findByChildId(int $childId): User
+    {
+        $builder = $this->getBuilder();
+
+        $user = $builder->whereMorphRelation('child', 'id', $childId)->first();
+
+        if($user === null) {
+            /** @var User $user */
+            $user = $this->findOneByOr404(['id' => $childId]);
+
+            return $user;
+        }
 
         return $user;
     }
