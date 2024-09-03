@@ -112,10 +112,14 @@ return [
             RouteName::MESSAGE_DELETE => 'delete',
             RouteName::MESSAGE => 'retrieve',
             RouteName::MESSAGES => 'collection',
-            RouteName::MESSAGES_MARK_AS_READ => 'markAsRead'
+            RouteName::MESSAGES_MARK_AS_READ => 'markAsRead',
+            RouteName::GRADE_CREATE => 'create',
+            RouteName::GRADE_UPDATE => 'update',
+            RouteName::GRADE_DELETE => 'delete',
+            RouteName::GRADES => 'collection',
         ],
         'possible_route_parameters' => [
-            'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient',
+            'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
             'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message'
         ],
         'additional_subjects' => [
@@ -134,6 +138,8 @@ return [
             RouteName::EQUIPMENTS => \App\Models\Equipment::class,
             RouteName::MESSAGE_CREATE => \App\Models\Message::class,
             RouteName::MESSAGES_MARK_AS_READ => \App\Models\Message::class,
+            RouteName::GRADE_CREATE => \App\Models\Grade::class,
+            RouteName::GRADES => \App\Models\Grade::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

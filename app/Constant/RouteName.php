@@ -80,4 +80,9 @@ class RouteName
     public const MESSAGES = 'messages';
     public const MESSAGE = 'message';
     public const MESSAGES_MARK_AS_READ = 'messages_mark_as_read';
+
+    public const GRADE_CREATE = 'grade_create';
+    public const GRADE_UPDATE = 'grade_update';
+    public const GRADE_DELETE = 'grade_delete';
+    public const GRADES = 'grades';
 }
