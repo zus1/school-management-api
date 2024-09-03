@@ -178,6 +178,17 @@ Route::middleware('custom-auth')->group(function () {
             ->where('message', '[0-9]+');
         Route::put('/messages/mark-as-read', \App\Http\Controllers\Message\MarkAsRead::class)
             ->name(RouteName::MESSAGES_MARK_AS_READ);
+
+        Route::post('/grades', \App\Http\Controllers\Grade\Create::class)
+            ->name(RouteName::GRADE_CREATE);
+        Route::put('/grades/{grade}', \App\Http\Controllers\Grade\Update::class)
+            ->name(RouteName::GRADE_UPDATE)
+            ->where('grade', '[0-9]+');
+        Route::delete('/grades/{grade}', \App\Http\Controllers\Grade\Delete::class)
+            ->name(RouteName::GRADE_DELETE)
+            ->where('grade', '[0-9]+');
+        Route::get('/grades', \App\Http\Controllers\Grade\RetrieveCollection::class)
+            ->name(RouteName::GRADES);
     });
 
 

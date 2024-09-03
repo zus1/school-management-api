@@ -45,7 +45,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection'
+        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection',
+        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection', 'student:nestedGradeCollection'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -58,7 +59,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection'
+        'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection',
+        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection', 'student:nestedGradeCollection'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',

@@ -19,13 +19,14 @@ use Zus1\Serializer\Attributes\Attributes;
     ['id',
         'subject:create', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
         'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection', 'subject:toggleLecturer',
-        'subject:nestedTeacherSubjectRetrieve'
+        'subject:nestedTeacherSubjectRetrieve', 'subject:nestedGradeCreate', 'subject:nestedGradeCollection'
     ],
     ['name',
         'subject:create', 'subject:update', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
         'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection',
         'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection',
-        'subject:toggleLecturerClasses', 'subject:toggleLecturer'
+        'subject:toggleLecturerClasses', 'subject:toggleLecturer', 'subject:nestedGradeCreate',
+        'subject:nestedGradeCollection'
     ],
     ['description', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:nestedTeacherSubjectRetrieve'],
     ['is_elective',

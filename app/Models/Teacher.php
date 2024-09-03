@@ -26,7 +26,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectEventRetrieve', 'user:nestedEventToggleNotify',
         'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
-        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject'
+        'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject', 'teacher:nestedGradeCreate',
+        'teacher:nestedGradeCollection'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -40,7 +41,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject'
+        'teacher:nestedSubject', 'teacher:nestedGradeCreate', 'teacher:nestedGradeCollection'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
