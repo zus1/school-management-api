@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Grade;
+namespace App\Http\Controllers\Attendance;
 
 use App\Http\Controllers\BaseSchoolDirectoryCollectionController;
-use App\Repository\GradeRepository;
+use App\Repository\AttendanceRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Zus1\Serializer\Facade\Serializer;
 
 class RetrieveCollection extends BaseSchoolDirectoryCollectionController
 {
-    public function __construct(GradeRepository $repository)
+    public function __construct(AttendanceRepository $repository)
     {
         parent::__construct($repository);
     }
@@ -22,11 +22,11 @@ class RetrieveCollection extends BaseSchoolDirectoryCollectionController
         $collection = $this->retrieveCollection($request);
 
         return new JsonResponse(Serializer::normalize($collection, [
-            'grade:collection',
-            'teacher:nestedGradeCollection',
-            'student:nestedGradeCollection',
-            'schoolClass:nestedGradeCollection',
-            'subject:nestedGradeCollection'
+            'attendance:collection',
+            'teacher:nestedAttendanceCollection',
+            'student:nestedAttendanceCollection',
+            'schoolClass:nestedAttendanceCollection',
+            'subject:nestedAttendanceCollection'
         ]));
     }
 }

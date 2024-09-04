@@ -117,10 +117,16 @@ return [
             RouteName::GRADE_UPDATE => 'update',
             RouteName::GRADE_DELETE => 'delete',
             RouteName::GRADES => 'collection',
+            RouteName::ATTENDANCE_CREATE => 'create',
+            RouteName::ATTENDANCE_UPDATE => 'update',
+            RouteName::ATTENDANCE_DELETE => 'delete',
+            RouteName::ATTENDANCES => 'collection',
+            RouteName::ATTENDANCES_AGGREGATE => 'aggregate',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
-            'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message'
+            'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message',
+            'attendance',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -140,6 +146,9 @@ return [
             RouteName::MESSAGES_MARK_AS_READ => \App\Models\Message::class,
             RouteName::GRADE_CREATE => \App\Models\Grade::class,
             RouteName::GRADES => \App\Models\Grade::class,
+            RouteName::ATTENDANCE_CREATE => \App\Models\Attendance::class,
+            RouteName::ATTENDANCES => \App\Models\Attendance::class,
+            RouteName::ATTENDANCES_AGGREGATE => \App\Models\Attendance::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

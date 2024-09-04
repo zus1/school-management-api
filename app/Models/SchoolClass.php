@@ -19,14 +19,16 @@ use Zus1\Serializer\Attributes\Attributes;
     ['id',
         'schoolClass:create', 'classroomNestedSubjectEventRetrieve', 'schoolClass:nestedExamEventCreate',
         'schoolClass:nestedExamEventRetrieve', 'schoolClass:nestedSubjectTeacherRetrieve', 'schoolClass:nestedGradeCreate',
-        'schoolClass:nestedGradeCollection'
+        'schoolClass:nestedGradeCollection', 'schoolClass:nestedAttendanceCreate', 'schoolClass:nestedAttendanceCollection',
+        'schoolClass:nestedAttendanceAggregate'
     ],
     ['name',
         'schoolClass:create', 'schoolClass:update', 'schoolClass:nestedSubjectEventCreate',
         'schoolClass:nestedSubjectEventUpdate', 'classroom:nestedSubjectEventRetrieve',
         'schoolClass:nestedExamEventCreate', 'schoolClass:nestedExamEventRetrieve',
         'schoolClass:nestedSubjectTeacherRetrieve', 'schoolClass:nestedTeacherSubjectCollection',
-        'schoolClass:nestedGradeCreate', 'schoolClass:nestedGradeCollection'
+        'schoolClass:nestedGradeCreate', 'schoolClass:nestedGradeCollection', 'schoolClass: nestedAttendanceCreate',
+        'schoolClass:nestedAttendanceCollection', 'schoolClass:nestedAttendanceAggregate'
     ],
     ['teacher', 'schoolClass:create', 'schoolClass:update'],
     ['schoolYear',

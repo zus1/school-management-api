@@ -27,7 +27,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject', 'teacher:nestedGradeCreate',
-        'teacher:nestedGradeCollection'
+        'teacher:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection',
+        'teacher:nestedAttendanceAggregate'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -41,7 +42,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedExamEventCreate', 'teacher:nestedExamEventUpdate', 'teacher:nestedExamEventRetrieve',
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
-        'teacher:nestedSubject', 'teacher:nestedGradeCreate', 'teacher:nestedGradeCollection'
+        'teacher:nestedSubject', 'teacher:nestedGradeCreate', 'teacher:nestedGradeCollection',
+        'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection', 'teacher:nestedAttendanceAggregate'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
