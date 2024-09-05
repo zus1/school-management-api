@@ -91,4 +91,14 @@ class RouteName
     public const ATTENDANCE_DELETE = 'attendance_delete';
     public const ATTENDANCES = 'attendances';
     public const ATTENDANCES_AGGREGATE = 'attendances_aggregate';
+
+    public const GRADING_RULE_CREATE = 'grading_rule_create';
+    public const GRADING_RULE_UPDATE = 'grading_rule_update';
+    public const GRADING_RULE_DELETE = 'grading_rule_delete';
+    public const GRADING_RULES = 'grading_rules';
+    public const GRADING_RULE = 'grading_rule';
+
+    public const GRADE_RANGE_CREATE = 'grade_range_create';
+    public const GRADE_RANGE_UPDATE = 'grade_rang_update';
+    public const GRADE_RANGE_DELETE = 'grade_range_delete';
 }

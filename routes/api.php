@@ -202,6 +202,30 @@ Route::middleware('custom-auth')->group(function () {
             ->name(RouteName::ATTENDANCES);
         Route::get('/attendances/aggregate', \App\Http\Controllers\Attendance\Aggregate::class)
             ->name(RouteName::ATTENDANCES_AGGREGATE);
+
+        Route::post('/grading-rules', \App\Http\Controllers\GradingRule\Create::class)
+            ->name(RouteName::GRADING_RULE_CREATE);
+        Route::put('/grading-rules/{gradingRule}', \App\Http\Controllers\GradingRule\Update::class)
+            ->name(RouteName::GRADING_RULE_UPDATE)
+            ->where('gradingRule', '[0-9]+');
+        Route::delete('/grading-rules/{gradingRule}', \App\Http\Controllers\GradingRule\Delete::class)
+            ->name(RouteName::GRADING_RULE_DELETE)
+            ->where('gradingRule', '[0-9]+');
+        Route::get('/grading-rules', \App\Http\Controllers\GradingRule\RetrieveCollection::class)
+            ->name(RouteName::GRADING_RULES);
+        Route::get('/grading-rules/{gradingRule}', \App\Http\Controllers\GradingRule\Retrieve::class)
+            ->name(RouteName::GRADING_RULE)
+            ->where('gradingRule', '[0-9]+');
+
+        Route::post('/grade-ranges/{gradingRule}', \App\Http\Controllers\GradeRange\Create::class)
+            ->name(RouteName::GRADE_RANGE_CREATE)
+            ->where('gradingRule', '[0-9]+');
+        Route::put('/grade-ranges/{gradeRange}', \App\Http\Controllers\GradeRange\Update::class)
+            ->name(RouteName::GRADE_RANGE_UPDATE)
+            ->where('gradeRange', '[0-9]+');
+        Route::delete('/grade-ranges/{gradeRange}', \App\Http\Controllers\GradeRange\Delete::class)
+            ->name(RouteName::GRADE_RANGE_DELETE)
+            ->where('gradeRange', '[0-9]+');
     });
 
 

@@ -87,4 +87,9 @@ class Teacher extends User
     {
         return $this->hasMany(SubjectEvent::class, 'teacher_id', 'id');
     }
+
+    public function gradingRules(): HasMany
+    {
+        return $this->hasMany(GradingRule::class, 'teacher_id', 'id');
+    }
 }

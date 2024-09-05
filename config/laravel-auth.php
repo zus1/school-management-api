@@ -122,11 +122,19 @@ return [
             RouteName::ATTENDANCE_DELETE => 'delete',
             RouteName::ATTENDANCES => 'collection',
             RouteName::ATTENDANCES_AGGREGATE => 'aggregate',
+            RouteName::GRADING_RULE_CREATE => 'create',
+            RouteName::GRADING_RULE_UPDATE => 'update',
+            RouteName::GRADING_RULE_DELETE => 'delete',
+            RouteName::GRADING_RULE => 'retrieve',
+            RouteName::GRADING_RULES => 'collection',
+            RouteName::GRADE_RANGE_CREATE => 'create',
+            RouteName::GRADE_RANGE_UPDATE => 'update',
+            RouteName::GRADE_RANGE_DELETE => 'delete',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
             'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message',
-            'attendance',
+            'attendance', 'gradingRule', 'gradeRange',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -149,6 +157,9 @@ return [
             RouteName::ATTENDANCE_CREATE => \App\Models\Attendance::class,
             RouteName::ATTENDANCES => \App\Models\Attendance::class,
             RouteName::ATTENDANCES_AGGREGATE => \App\Models\Attendance::class,
+            RouteName::GRADING_RULE_CREATE => \App\Models\GradingRule::class,
+            RouteName::GRADING_RULES => \App\Models\GradingRule::class,
+            RouteName::GRADE_RANGE_CREATE => \App\Models\GradeRange::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class
