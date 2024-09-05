@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Constant\RouteName;
 use App\Http\Requests\Rules\SchoolDirectoryRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AttendanceRequest extends FormRequest
@@ -55,11 +56,22 @@ class AttendanceRequest extends FormRequest
     private function aggregateRules(): array
     {
         return [
-            'student_id' => $this->rules->studentId(isRequired: false),
-            'subject_id' => $this->rules->subjectId(isRequired: false),
-            'teacher_id' => $this->rules->teacherId(isRequired: false),
-            'school_class_id' => $this->rules->schoolClassId(isRequired: false),
+            'student_id' => $this->getAggregateRule('student_id'),
+            'subject_id' => $this->getAggregateRule('subject_id'),
+            'teacher_id' => $this->getAggregateRule('teacher_id'),
+            'school_class_id' => $this->getAggregateRule('school_class_id'),
         ];
+    }
+
+    private function getAggregateRule(string $field): string
+    {
+        if((int)$this->query($field) === 0) {
+            return 'integer';
+        }
+
+        $ruleMethod = Str::camel($field);
+
+        return $this->rules->$ruleMethod(false);
     }
 
     private function sharedRules(): array
