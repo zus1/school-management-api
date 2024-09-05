@@ -18,13 +18,15 @@ use Zus1\Serializer\Attributes\Attributes;
 #[Attributes([
     ['id',
         'student:create', 'student:onboard', 'user:me', 'student:retrieve',
-        'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection'
+        'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection',
+        'student:nestedAttendanceCreate', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate'
     ],
     ['onboarded_at', 'student:onboard', 'student:retrieve'],
     ['last_change_at', 'student:update'],
     ['parent',
         'student:create', 'student:onboard', 'user:me', 'student:update', 'student:retrieve',
-        'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection'
+        'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection',
+        'student:nestedAttendanceCreate', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]

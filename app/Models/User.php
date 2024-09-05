@@ -46,7 +46,10 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
         'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection',
-        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection', 'student:nestedGradeCollection'
+        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
+        'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
+        'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
+        'teacher:nestedAttendanceAggregate'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -60,7 +63,10 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
         'teacher:nestedSubject', 'user:nestedMessageCreate', 'user:nestedMessageRetrieve', 'user:nestedMessageCollection',
-        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection', 'student:nestedGradeCollection'
+        'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
+        'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
+        'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
+        'teacher:nestedAttendanceAggregate'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',

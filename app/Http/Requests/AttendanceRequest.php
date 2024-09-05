@@ -5,14 +5,14 @@ namespace App\Http\Requests;
 use App\Constant\RouteName;
 use App\Http\Requests\Rules\SchoolDirectoryRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class GradeRequest extends FormRequest
+class AttendanceRequest extends FormRequest
 {
     public function __construct(
         private SchoolDirectoryRules $rules,
-    )
-    {
+    ){
         parent::__construct();
     }
 
@@ -31,11 +31,14 @@ class GradeRequest extends FormRequest
      */
     public function rules(): array
     {
-        if($this->route()->action['as'] === RouteName::GRADE_CREATE) {
+        if($this->route()->action['as'] === RouteName::ATTENDANCE_CREATE) {
             return $this->createRules();
         }
-        if($this->route()->action['as'] === RouteName::GRADE_UPDATE) {
+        if($this->route()->action['as'] === RouteName::ATTENDANCE_UPDATE) {
             return $this->sharedRules();
+        }
+        if($this->route()->action['as'] === RouteName::ATTENDANCES_AGGREGATE) {
+            return $this->aggregateRules();
         }
 
         throw new HttpException(422, 'Unprocessable entity');
@@ -50,11 +53,31 @@ class GradeRequest extends FormRequest
         ];
     }
 
+    private function aggregateRules(): array
+    {
+        return [
+            'student_id' => $this->getAggregateRule('student_id'),
+            'subject_id' => $this->getAggregateRule('subject_id'),
+            'teacher_id' => $this->getAggregateRule('teacher_id'),
+            'school_class_id' => $this->getAggregateRule('school_class_id'),
+        ];
+    }
+
+    private function getAggregateRule(string $field): string
+    {
+        if((int)$this->query($field) === 0) {
+            return 'integer';
+        }
+
+        $ruleMethod = Str::camel($field);
+
+        return $this->rules->$ruleMethod(false);
+    }
+
     private function sharedRules(): array
     {
         return [
-            'grade' => 'required|integer|max:5|min:1',
-            'comment' => 'string|max:1000',
+            'comment' => 'string|max:1000'
         ];
     }
 }

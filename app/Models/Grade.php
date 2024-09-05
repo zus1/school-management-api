@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Interface\SchoolDirectoryInterface;
+use App\Trait\SchoolDirectory\HasSchoolDirectoryRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Zus1\Serializer\Attributes\Attributes;
 
 /**
@@ -27,27 +28,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ['schoolClass', 'grade:create', 'grade:collection'],
     ['subject', 'grade:create', 'grade:collection'],
 ])]
-class Grade extends Model
+class Grade extends Model implements SchoolDirectoryInterface
 {
-    use HasFactory;
-
-    public function teacher(): BelongsTo
-    {
-        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
-    }
-
-    public function student(): BelongsTo
-    {
-        return $this->belongsTo(Student::class, 'student_id', 'id');
-    }
-
-    public function schoolClass(): BelongsTo
-    {
-        return $this->belongsTo(SchoolClass::class, 'school_class_id', 'id');
-    }
-
-    public function subject(): BelongsTo
-    {
-        return $this->belongsTo(Subject::class, 'subject_id', 'id');
-    }
+    use HasFactory, HasSchoolDirectoryRelationships;
 }

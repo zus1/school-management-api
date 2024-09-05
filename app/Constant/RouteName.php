@@ -85,4 +85,10 @@ class RouteName
     public const GRADE_UPDATE = 'grade_update';
     public const GRADE_DELETE = 'grade_delete';
     public const GRADES = 'grades';
+
+    public const ATTENDANCE_CREATE = 'attendance_create';
+    public const ATTENDANCE_UPDATE = 'attendance_update';
+    public const ATTENDANCE_DELETE = 'attendance_delete';
+    public const ATTENDANCES = 'attendances';
+    public const ATTENDANCES_AGGREGATE = 'attendances_aggregate';
 }

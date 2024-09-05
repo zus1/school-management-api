@@ -189,6 +189,19 @@ Route::middleware('custom-auth')->group(function () {
             ->where('grade', '[0-9]+');
         Route::get('/grades', \App\Http\Controllers\Grade\RetrieveCollection::class)
             ->name(RouteName::GRADES);
+
+        Route::post('/attendances', \App\Http\Controllers\Attendance\Create::class)
+            ->name(RouteName::ATTENDANCE_CREATE);
+        Route::put('/attendances/{attendance}', \App\Http\Controllers\Attendance\Update::class)
+            ->name(RouteName::ATTENDANCE_UPDATE)
+            ->where('attendance', '[0-9]+');
+        Route::delete('/attendances/(attendance}', \App\Http\Controllers\Attendance\Delete::class)
+            ->name(RouteName::ATTENDANCE_DELETE)
+            ->where('grade', '[0-9]+');
+        Route::get('/attendances', \App\Http\Controllers\Attendance\RetrieveCollection::class)
+            ->name(RouteName::ATTENDANCES);
+        Route::get('/attendances/aggregate', \App\Http\Controllers\Attendance\Aggregate::class)
+            ->name(RouteName::ATTENDANCES_AGGREGATE);
     });
 
 
