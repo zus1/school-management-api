@@ -101,4 +101,23 @@ class RouteName
     public const GRADE_RANGE_CREATE = 'grade_range_create';
     public const GRADE_RANGE_UPDATE = 'grade_rang_update';
     public const GRADE_RANGE_DELETE = 'grade_range_delete';
+
+    public const EXAM_CREATE = 'exam_create';
+    public const EXAM_UPDATE = 'exam_update';
+    public const EXAM_DELETE = 'exam-delete';
+    public const EXAM = 'exam';
+    public const EXAMS = 'exams';
+    public const EXAM_TOGGLE_GRADING_RULE = 'exam_toggle_grading_rule';
+    public const EXAM_TOGGLE_ALLOWED_SCHOOL_CLASS = 'exam_toggle_allowed_school_class';
+
+    public const QUESTIONS_CREATE = 'questions_create';
+    public const QUESTION_UPDATE = 'question_update';
+    public const QUESTION_DELETE = 'question_delete';
+    public const QUESTION = 'question';
+    public const QUESTIONS = 'questions';
+    public const QUESTION_CHANGE_EXAM = 'question_change_exam';
+
+    public const ANSWER_UPDATE = 'answer_update';
+    public const ANSWER_DELETE = 'answer_delete';
+    public const ANSWER_CHANGE_QUESTION = 'answer_change_question';
 }

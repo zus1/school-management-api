@@ -28,7 +28,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject', 'teacher:nestedGradeCreate',
         'teacher:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection',
-        'teacher:nestedAttendanceAggregate'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -43,7 +43,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
         'teacher:nestedSubject', 'teacher:nestedGradeCreate', 'teacher:nestedGradeCollection',
-        'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection', 'teacher:nestedAttendanceAggregate'
+        'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection', 'teacher:nestedAttendanceAggregate',
+        'teacher:nestedExamRetrieve'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
@@ -86,6 +87,23 @@ class Teacher extends User
     public function subjectEvents(): HasMany
     {
         return $this->hasMany(SubjectEvent::class, 'teacher_id', 'id');
+    }
+
+    public function lecturedSchoolClasses(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            SchoolClass::class,
+            SubjectEvent::class,
+            'teacher_id',
+            'id',
+            'id',
+            'school_class_id',
+        );
+    }
+
+    public function lecturesSchoolClass(string $schoolClass): bool
+    {
+        return $this->lecturedSchoolClasses()->where('name', $schoolClass)->exists();
     }
 
     public function gradingRules(): HasMany

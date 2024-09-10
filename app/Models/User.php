@@ -49,7 +49,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'teacher:nestedAttendanceAggregate'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -66,7 +66,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'teacher:nestedAttendanceAggregate'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',

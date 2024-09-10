@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Zus1\Discriminator\Observers\DiscriminatorObserver;
 use Zus1\Serializer\Attributes\Attributes;
@@ -56,5 +58,42 @@ class Student extends User
     public function schoolClass(): BelongsTo
     {
         return $this->belongsTo(SchoolClass::class, 'school_class_id', 'id');
+    }
+
+    public function schoolYear(): HasOneThrough
+    {
+        return $this->hasOneThrough(
+            SchoolYear::class,
+            SchoolClass::class,
+            'id',
+            'id',
+            'school_class_id',
+            'school_year_id',
+        );
+    }
+
+    public function scheduledClasses(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            SubjectEvent::class,
+            SchoolClass::class,
+            'id',
+            'school_class_id',
+            'school_class_id',
+            'id',
+        );
+    }
+
+    public function hasLecturer(Teacher $teacher): bool
+    {
+        return $this->scheduledClasses()->whereRelation('teacher', 'id', $teacher->id)->exists();
+    }
+
+    public function hasSubject(Subject $subject): bool
+    {
+        /** @var SchoolYear $schoolYear */
+        $schoolYear = $this->schoolYear()->first();
+
+        return $schoolYear->subjects()->where('id', $subject->id)->exists();
     }
 }

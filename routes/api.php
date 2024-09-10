@@ -226,6 +226,59 @@ Route::middleware('custom-auth')->group(function () {
         Route::delete('/grade-ranges/{gradeRange}', \App\Http\Controllers\GradeRange\Delete::class)
             ->name(RouteName::GRADE_RANGE_DELETE)
             ->where('gradeRange', '[0-9]+');
+
+        Route::post('/exams', \App\Http\Controllers\Exam\Create::class)
+            ->name(RouteName::EXAM_CREATE);
+        Route::put('/exams/{exam}', \App\Http\Controllers\Exam\Update::class)
+            ->name(RouteName::EXAM_UPDATE)
+            ->where('exam', '[0-9]+');
+        Route::delete('/exams/{exam}', \App\Http\Controllers\Exam\Delete::class)
+            ->name(RouteName::EXAM_DELETE)
+            ->where('exam', '[0-9]+');
+        Route::get('/exams', \App\Http\Controllers\Exam\RetrieveCollection::class)
+            ->name(RouteName::EXAMS);
+        Route::get('/exams/{exam}', \App\Http\Controllers\Exam\Retrieve::class)
+            ->name(RouteName::EXAM)
+            ->where('exam', '[0-9]+');
+        Route::put('/exams/{exam}/grading-rules/{gradingRule?}', \App\Http\Controllers\Exam\ToggleGradingRule::class)
+            ->name(RouteName::EXAM_TOGGLE_GRADING_RULE)
+            ->where('exam', '[0-9]+')
+            ->where('gradingRule', '[0-9]+');
+        Route::put('/exams/{exam}/school-classes/{schoolClass}/allowed', \App\Http\Controllers\Exam\ToggleAllowedSchoolClass::class)
+            ->name(RouteName::EXAM_TOGGLE_ALLOWED_SCHOOL_CLASS)
+            ->where('exam', '[0-9]+')
+            ->where('schoolClass', '{[0-9]+}{[a-z]+}');
+
+        Route::post('/questions/{exam}', \App\Http\Controllers\Question\CreateBulk::class)
+            ->name(RouteName::QUESTIONS_CREATE)
+            ->where('exam', '[0-9]+');
+        Route::put('/questions/{question}', \App\Http\Controllers\Question\Update::class)
+            ->name(RouteName::QUESTION_UPDATE)
+            ->where('question', '[0-9]+');
+        Route::delete('/questions/{question}', \App\Http\Controllers\Question\Delete::class)
+            ->name(RouteName::QUESTION_DELETE)
+            ->where('question', '[0-9]+');
+        Route::get('/questions/exams/{exam}', \App\Http\Controllers\Question\RetrieveCollection::class)
+            ->name(RouteName::QUESTIONS)
+            ->where('exam', '[0-9]+');
+        Route::get('/question/{question}', \App\Http\Controllers\Question\Retrieve::class)
+            ->name(RouteName::QUESTION)
+            ->where('question', '[0-9]+');
+        Route::put('/questions/{question}/exams/{exam}', \App\Http\Controllers\Question\ChangeExam::class)
+            ->name(RouteName::QUESTION_CHANGE_EXAM)
+            ->where('question', '[0-9]+')
+            ->where('exam', '[0-9]+');
+
+        Route::put('/answers/{answer}', \App\Http\Controllers\Answer\Update::class)
+            ->name(RouteName::ANSWER_UPDATE)
+            ->where('answer', '[0-9]+');
+        Route::delete('/answers/{answer}', \App\Http\Controllers\Answer\Delete::class)
+            ->name(RouteName::ANSWER_DELETE)
+            ->where('answer', '[0-9]+');
+        Route::put('/answers/{answer}/questions/{question}', \App\Http\Controllers\Answer\ChangeQuestion::class)
+            ->name(RouteName::ANSWER_CHANGE_QUESTION)
+            ->where('question', '[0-9]+')
+            ->where('answer', '[0-9]+');
     });
 
 

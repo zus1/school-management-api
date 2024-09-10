@@ -32,6 +32,13 @@ class GradingRuleRepository extends LaravelBaseRepository
         return $gradingRule;
     }
 
+    public function delete(GradingRule $gradingRule): void
+    {
+        $gradingRule->exams()->update(['grading_rule_id' => null]);
+
+        $gradingRule->delete();
+    }
+
     private function modifySharedData(GradingRule $gradingRule, array $data): void
     {
         $gradingRule->name = $data['name'];
