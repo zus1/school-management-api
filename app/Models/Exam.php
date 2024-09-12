@@ -28,11 +28,13 @@ use Zus1\Serializer\Attributes\Attributes;
 #[Attributes([
     ['id',
         'exam:create', 'exam:retrieve', 'exam:toggleGradingRule', 'exam:nestedQuestionsCreate',
-        'exam:nestedQuestionChangeExam'. 'exam:toggleAllowedSchoolClass'
+        'exam:nestedQuestionChangeExam'. 'exam:toggleAllowedSchoolClass', 'exam:nestedExamSessionCreate',
+        'exam:nestedExamSessionRetrieve'
     ],
     ['title',
         'exam:create', 'exam:update', 'exam:retrieve', 'exam:toggleGradingRule', 'exam:nestedQuestionsCreate',
-        'exam:nestedQuestionChangeExam', 'exam:toggleAllowedSchoolClass'
+        'exam:nestedQuestionChangeExam', 'exam:toggleAllowedSchoolClass', 'exam:nestedExamSessionCreate',
+        'exam:nestedExamSessionRetrieve'
     ],
     ['starts_at', 'exam:create', 'exam:update', 'exam:retrieve'],
     ['ends_at', 'exam:create', 'exam:update', 'exam:retrieve'],

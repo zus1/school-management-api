@@ -10,6 +10,7 @@ class Retrieve
 {
     public function __invoke(Question $question): JsonResponse
     {
-        return new JsonResponse(Serializer::normalize($question, ['question:retrieve', 'answer:nestedQuestionRetrieve']));
+        return new JsonResponse(Serializer::normalize($question,
+            ['question:retrieve', 'answer:nestedQuestionRetrieve', 'media:nestedQuestionRetrieve']));
     }
 }

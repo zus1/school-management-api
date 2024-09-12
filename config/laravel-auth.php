@@ -146,11 +146,17 @@ return [
             RouteName::ANSWER_UPDATE => 'update',
             RouteName::ANSWER_DELETE => 'delete',
             RouteName::ANSWER_CHANGE_QUESTION => 'changeQuestion',
+            RouteName::EXAM_RESPONSE_CREATE => 'create',
+            RouteName::EXAM_RESPONSE_UPDATE => 'update',
+            RouteName::EXAM_RESPONSE_DELETE => 'delete',
+            RouteName::EXAM_RESPONSE => 'retrieve',
+            RouteName::EXAM_RESPONSES => 'collection',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
             'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message',
             'attendance', 'gradingRule', 'gradeRange', 'exam', 'question', 'answer',
+            'examResponse',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -180,6 +186,8 @@ return [
             RouteName::EXAMS => \App\Models\Exam::class,
             RouteName::QUESTIONS_CREATE => \App\Models\Question::class,
             RouteName::QUESTIONS => \App\Models\Question::class,
+            RouteName::EXAM_RESPONSE_CREATE => \App\Models\ExamResponse::class,
+            RouteName::EXAM_RESPONSES => \App\Models\ExamResponse::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

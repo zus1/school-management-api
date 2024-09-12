@@ -15,8 +15,14 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $question_id
  */
 #[Attributes([
-    ['id', 'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:changeQuestion'],
-    ['answer', 'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:update'],
+    ['id',
+        'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:changeQuestion',
+        'answer:nextedExamResponseCreate'
+    ],
+    ['answer',
+        'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:update',
+        'answer:nextedExamResponseCreate', 'answer:nestedExamResponseRetrieve', 'answer:nestedExamUpdate'
+    ],
     ['position', 'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:update'],
     ['question', 'answer:update', 'answer:changeQuestion']
 ])]

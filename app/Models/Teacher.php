@@ -28,7 +28,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedSubjectRetrieve', 'teacher:nestedSubjectToggleLecturer',
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedSubject', 'teacher:nestedGradeCreate',
         'teacher:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection',
-        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload'
     ],
     ['months_of_employment', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve'],
     ['employed_at', 'user:register', 'user:me', 'teacher:update', 'teacher:retrieve', 'teacher:collection'],
@@ -44,7 +44,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedTeacherSubjectRetrieve', 'teacher:nestedTeacherSubjectCollection', 'teacher:nestedToggleLecturerClasses',
         'teacher:nestedSubject', 'teacher:nestedGradeCreate', 'teacher:nestedGradeCollection',
         'teacher:nestedAttendanceCreate', 'teacher:nestedAttendanceCollection', 'teacher:nestedAttendanceAggregate',
-        'teacher:nestedExamRetrieve'
+        'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]

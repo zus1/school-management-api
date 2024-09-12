@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Interface\CanBeActiveInterface;
+use App\Interface\MediasOwnerInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -49,7 +50,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
+        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -66,7 +68,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedGradeCreate', 'student:nestedGradeCreate', 'teacher:nestedGradeCollection',
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve'
+        'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
+        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',
@@ -91,7 +94,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ],
     ['medias', 'user:me', 'student:retrieve', 'teacher:retrieve', 'guardian:retrieve']
 ])]
-class User extends Authenticatable implements CanBeActiveInterface
+class User extends Authenticatable implements CanBeActiveInterface, MediasOwnerInterface
 {
     use HasFactory, Notifiable, Discriminator, Token;
 
@@ -152,5 +155,13 @@ class User extends Authenticatable implements CanBeActiveInterface
     public function receivedMessages(): HasMany
     {
         return $this->hasMany(Message::class, 'recipient_id', 'id');
+    }
+
+    public function mediaOwnerId(): int
+    {
+        /** @var self $child */
+        $child = $this->child()->first();
+
+        return $child->id;
     }
 }

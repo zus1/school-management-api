@@ -15,11 +15,14 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $city
  */
 #[Attributes([
-    ['id', 'user:register', 'user:me', 'guardian:retrieve', 'guardian:collection'],
+    ['id', 'user:register', 'user:me', 'guardian:retrieve', 'guardian:collection', 'mediaOwner:nestedMediaUpload'],
     ['street', 'user:register', 'user:me', 'user:meUpdate', 'guardian:update', 'guardian:retrieve', 'guardian:collection'],
     ['occupation', 'user:register', 'user:me', 'user:meUpdate', 'guardian:update', 'guardian:retrieve'],
     ['city', 'guardian:update', 'user:meUpdate', 'guardian:retrieve', 'guardian:collection', 'user:register'],
-    ['parent', 'user:me', 'user:meUpdate', 'guardian:update', 'guardian:retrieve', 'user:register'],
+    ['parent',
+        'user:me', 'user:meUpdate', 'guardian:update', 'guardian:retrieve', 'user:register',
+        'mediaOwner:nestedMediaUpload'
+    ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
 class Guardian extends User

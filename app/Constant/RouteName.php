@@ -28,7 +28,6 @@ class RouteName
 
     public const ME = 'me';
     public const ME_UPDATE = 'me_update';
-    public const ME_AVATAR = 'me_avatar';
     public const ME_DELETE = 'me_delete';
 
     public const SCHOOL_CLASS_CREATE = 'school_class_create';
@@ -120,4 +119,12 @@ class RouteName
     public const ANSWER_UPDATE = 'answer_update';
     public const ANSWER_DELETE = 'answer_delete';
     public const ANSWER_CHANGE_QUESTION = 'answer_change_question';
+
+    public const MEDIA_UPLOAD = 'media_upload';
+
+    public const EXAM_RESPONSE_CREATE = 'exam_response_create';
+    public const EXAM_RESPONSE_UPDATE = 'exam_response_update';
+    public const EXAM_RESPONSE_DELETE = 'exam_response_delete';
+    public const EXAM_RESPONSE = 'exam_response';
+    public const EXAM_RESPONSES = 'exam_responses';
 }

@@ -279,6 +279,27 @@ Route::middleware('custom-auth')->group(function () {
             ->name(RouteName::ANSWER_CHANGE_QUESTION)
             ->where('question', '[0-9]+')
             ->where('answer', '[0-9]+');
+
+        Route::post('/medias/{owner?}', \App\Http\Controllers\Media\Upload::class)
+            ->name(RouteName::MEDIA_UPLOAD)
+            ->where('owner', '[0-9]+')
+            ->middleware('inject-media-owner');
+
+        Route::post('/exam-responses/{examSession}', \App\Http\Controllers\ExamResponse\Create::class)
+            ->name(RouteName::EXAM_RESPONSE_CREATE)
+            ->where('examSession', '[0-9]+');
+        Route::put('/exam-responses/{examResponse}', \App\Http\Controllers\ExamResponse\Update::class)
+            ->name(RouteName::EXAM_RESPONSE_UPDATE)
+            ->where('examResponse', '[0-9]+');
+        Route::delete('/exam-responses/{examResponse}', \App\Http\Controllers\ExamResponse\Delete::class)
+            ->name(RouteName::EXAM_RESPONSE_DELETE)
+            ->where('examResponse', '[0-9]+');
+        Route::get('/exam-responses/exam-sessions/{examSession}', \App\Http\Controllers\ExamResponse\RetrieveCollection::class)
+            ->name(RouteName::EXAM_RESPONSES)
+            ->where('examSession', '[0-9]+');
+        Route::get('exam-responses/{examResponse}', \App\Http\Controllers\ExamResponse\Retrieve::class)
+            ->name(RouteName::EXAM_RESPONSE)
+            ->where('examResponse', '[0-9]+');
     });
 
 
@@ -287,8 +308,6 @@ Route::middleware('custom-auth')->group(function () {
         ->name(RouteName::ME);
     Route::put('/me', \App\Http\Controllers\Me\Update::class)
         ->name(RouteName::ME_UPDATE);
-    Route::post('/me/avatar', \App\Http\Controllers\Me\Avatar::class)
-        ->name(RouteName::ME_AVATAR);
 
     Route::post('/school-classes', \App\Http\Controllers\SchoolClass\Create::class)
         ->name(RouteName::SCHOOL_CLASS_CREATE);
