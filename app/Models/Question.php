@@ -65,4 +65,9 @@ class Question extends Model implements CanBeActiveInterface, MediasOwnerInterfa
     {
         return $this->id;
     }
+
+    public function examResponses(): HasMany
+    {
+        return $this->hasMany(ExamResponse::class, 'question_id', 'id');
+    }
 }

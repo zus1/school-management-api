@@ -21,7 +21,8 @@ use Zus1\Serializer\Attributes\Attributes;
     ],
     ['answer',
         'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:update',
-        'answer:nextedExamResponseCreate', 'answer:nestedExamResponseRetrieve', 'answer:nestedExamUpdate'
+        'answer:nextedExamResponseCreate', 'answer:nestedExamResponseRetrieve', 'answer:nestedExamUpdate',
+        'answer:nestedExamSessionGrade'
     ],
     ['position', 'answer:nestedQuestionCreateBulk', 'answer:nestedQuestionRetrieve', 'answer:update'],
     ['question', 'answer:update', 'answer:changeQuestion']

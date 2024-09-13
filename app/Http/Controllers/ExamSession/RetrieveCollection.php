@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\ExamSession;
 
+use App\Http\Requests\ExamSessionRequest;
 use App\Models\Exam;
 use App\Models\Guardian;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Repository\ExamSessionRepository;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Zus1\LaravelBaseRepository\Controllers\BaseCollectionController;
 use Zus1\Serializer\Facade\Serializer;
@@ -20,7 +20,7 @@ class RetrieveCollection extends BaseCollectionController
         parent::__construct($repository);
     }
 
-    public function __invoke(Request $request, Exam $exam): JsonResponse
+    public function __invoke(ExamSessionRequest $request, Exam $exam): JsonResponse
     {
         $auth = Auth::user();
 
@@ -50,6 +50,13 @@ class RetrieveCollection extends BaseCollectionController
                 ]);
             }
         }
+
+        $filters = $request->query('filters');
+        $filters = [
+            ...$filters,
+            'exam_id' => $exam->id,
+        ];
+        $request->query->set('filters', $filters);
 
         $collection = $this->retrieveCollection($request);
 

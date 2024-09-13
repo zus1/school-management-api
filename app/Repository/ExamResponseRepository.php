@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Constant\ExamSessionStatus;
 use App\Models\ExamResponse;
 use App\Models\ExamSession;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Zus1\LaravelBaseRepository\Repository\LaravelBaseRepository;
 
@@ -57,6 +58,13 @@ class ExamResponseRepository extends LaravelBaseRepository
         }
 
         $examResponse->delete();
+    }
+
+    public function findByIds(array $ids): Collection
+    {
+        $builder = $this->getBuilder();
+
+        return $builder->whereIn('id', $ids)->get();
     }
 
     private function modifySharedData(ExamResponse $examResponse, array $data): void

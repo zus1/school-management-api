@@ -61,6 +61,19 @@ class ExamSessionRepository extends LaravelBaseRepository
         return $examSession;
     }
 
+    public function grade(ExamSession $examSession, Exam $exam, int $grade, int $achievedPoints, ?string $comment): ExamSession
+    {
+        $examSession->grade = $grade;
+        $examSession->comment = $comment;
+        $examSession->achieved_points = $achievedPoints;
+        $examSession->achieved_percentage = $achievedPoints/$exam->total_points;
+        $examSession->status = ExamSessionStatus::GRADED;
+
+        $examSession->save();
+
+        return $examSession;
+    }
+
     private function checkIfExamIsStarted(Exam $exam): void
     {
         $now = Carbon::now();

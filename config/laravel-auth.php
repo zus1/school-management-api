@@ -151,12 +151,18 @@ return [
             RouteName::EXAM_RESPONSE_DELETE => 'delete',
             RouteName::EXAM_RESPONSE => 'retrieve',
             RouteName::EXAM_RESPONSES => 'collection',
+            RouteName::EXAM_SESSION_CREATE => 'create',
+            RouteName::EXAM_SESSION_DELETE => 'delete',
+            RouteName::EXAM_SESSION_FINISH => 'finish',
+            RouteName::EXAM_SESSION_GRADE => 'grade',
+            RouteName::EXAM_SESSION => 'retrieve',
+            RouteName::EXAM_SESSIONS => 'collection',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
             'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message',
             'attendance', 'gradingRule', 'gradeRange', 'exam', 'question', 'answer',
-            'examResponse',
+            'examResponse', 'examSession',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -188,6 +194,8 @@ return [
             RouteName::QUESTIONS => \App\Models\Question::class,
             RouteName::EXAM_RESPONSE_CREATE => \App\Models\ExamResponse::class,
             RouteName::EXAM_RESPONSES => \App\Models\ExamResponse::class,
+            RouteName::EXAM_SESSION_CREATE => \App\Models\ExamSession::class,
+            RouteName::EXAM_SESSIONS => \App\Models\ExamSession::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

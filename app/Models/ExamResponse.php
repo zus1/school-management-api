@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Iksaku\Laravel\MassUpdate\MassUpdatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,18 +17,28 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $comment
  * @property int $exam_session_id
  * @property int $question_id
+ * @method static massUpdate(array $objects)
  */
 #[Attributes([
-    ['id', 'examResponse:create', 'examResponse:collection', 'examResponse:retrieve'],
-    ['response', 'examResponse:create', 'examResponse:retrieve', 'examResponse:update'],
-    ['answer', 'examResponse:create', 'examResponse:retrieve', 'examResponse:update'],
-    ['is_correct', 'examResponse:retrieve'],
-    ['comment', 'examResponse:retrieve'],
+    ['id',
+        'examResponse:create', 'examResponse:collection', 'examResponse:retrieve',
+        'examResponses:nestedExamSessionGrade'
+    ],
+    ['response',
+        'examResponse:create', 'examResponse:retrieve', 'examResponse:update',
+        'examResponses:nestedExamSessionGrade'
+    ],
+    ['answer',
+        'examResponse:create', 'examResponse:retrieve', 'examResponse:update',
+        'examResponses:nestedExamSessionGrade'
+    ],
+    ['is_correct', 'examResponse:retrieve', 'examResponses:nestedExamSessionGrade'],
+    ['comment', 'examResponse:retrieve', 'examResponses:nestedExamSessionGrade'],
     ['question', 'examResponse:create', 'examResponse:collection', 'examResponse:collection'],
 ])]
 class ExamResponse extends Model
 {
-    use HasFactory;
+    use HasFactory, MassUpdatable;
 
     public function casts(): array
     {

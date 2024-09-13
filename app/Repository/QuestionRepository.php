@@ -49,6 +49,17 @@ class QuestionRepository extends LaravelBaseRepository
         return $question;
     }
 
+    public function findByExamResponseIds(array $examResponseIds): Collection
+    {
+        $builder = $this->getBuilder();
+
+        foreach ($examResponseIds as $examResponseId) {
+            $builder->orWhereRelation('examResponses', 'id', $examResponseId);
+        }
+
+        return $builder->get();
+    }
+
     private function addAnswers(array $questions): void
     {
         /** @var Question $question */

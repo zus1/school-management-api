@@ -285,6 +285,25 @@ Route::middleware('custom-auth')->group(function () {
             ->where('owner', '[0-9]+')
             ->middleware('inject-media-owner');
 
+        Route::post('/exam-sessions/{exam}', \App\Http\Controllers\ExamSession\Create::class)
+            ->name(RouteName::EXAM_SESSION_CREATE)
+            ->where('exam', '[0-9]+');
+        Route::delete('/exam-sessions/{examSession}', \App\Http\Controllers\ExamSession\Delete::class)
+            ->name(RouteName::EXAM_SESSION_DELETE)
+            ->where('examSession', '[0-9]+');
+        Route::get('/exam-sessions/{examSession}', \App\Http\Controllers\ExamSession\Retrieve::class)
+            ->name(RouteName::EXAM_SESSION)
+            ->where('examSession', '[0-9]+');
+        Route::get('/exam-sessions/exam/{exam}', \App\Http\Controllers\ExamSession\RetrieveCollection::class)
+            ->name(RouteName::EXAM_SESSIONS)
+            ->where('exam', '[0-9]+');
+        Route::put('/exam-session/{examSession}/finish', \App\Http\Controllers\ExamSession\Finish::class)
+            ->name(RouteName::EXAM_SESSION_FINISH)
+            ->where('examSession', '[0-9]+');
+        Route::post('/exam-sessions/{examSession}/grade', \App\Http\Controllers\ExamSession\Grade::class)
+            ->name(RouteName::EXAM_SESSION_GRADE)
+            ->where('examSession', '[0-9]+');
+
         Route::post('/exam-responses/{examSession}', \App\Http\Controllers\ExamResponse\Create::class)
             ->name(RouteName::EXAM_RESPONSE_CREATE)
             ->where('examSession', '[0-9]+');

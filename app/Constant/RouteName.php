@@ -122,6 +122,13 @@ class RouteName
 
     public const MEDIA_UPLOAD = 'media_upload';
 
+    public const EXAM_SESSION_CREATE = 'exam_session_create';
+    public const EXAM_SESSION_DELETE = 'exam_session_delete';
+    public const EXAM_SESSION_FINISH = 'exam_session_finish';
+    public const EXAM_SESSION_GRADE = 'exam_session_grade';
+    public const EXAM_SESSION = 'exam_session';
+    public const EXAM_SESSIONS = 'exam_sessions';
+
     public const EXAM_RESPONSE_CREATE = 'exam_response_create';
     public const EXAM_RESPONSE_UPDATE = 'exam_response_update';
     public const EXAM_RESPONSE_DELETE = 'exam_response_delete';
