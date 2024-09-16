@@ -74,6 +74,15 @@ class ExamSessionRepository extends LaravelBaseRepository
         return $examSession;
     }
 
+    public function handleUnfinishedAndExpired(int $chunkSize, array $callback): void
+    {
+        $builder = $this->getBuilder();
+
+        $builder->where('status', ExamSessionStatus::IN_PROGRESS)
+            ->where('ends_at', '<=', Carbon::now()->format('Y-m-d H:i:s'))
+            ->chunk($chunkSize, $callback);
+    }
+
     private function checkIfExamIsStarted(Exam $exam): void
     {
         $now = Carbon::now();

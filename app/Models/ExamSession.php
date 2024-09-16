@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Trait\Mutator\DateTimeMutator;
+use Iksaku\Laravel\MassUpdate\MassUpdatable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,7 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $status
  * @property int $duration
  * @property int $student_id
+ * @method static massUpdate(array $objects)
  */
 #[Attributes([
     ['id', 'examSession:create', 'examSession:collection', 'examSession:retrieve', 'examSession:grade'],
@@ -39,7 +41,7 @@ use Zus1\Serializer\Attributes\Attributes;
 ])]
 class ExamSession extends Model
 {
-    use HasFactory, DateTimeMutator;
+    use HasFactory, DateTimeMutator, MassUpdatable;
 
     public function student(): BelongsTo
     {
