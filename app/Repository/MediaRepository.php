@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+use App\Constant\Media\MediaOwner;
+use App\Interface\MediaOwnerInterface;
+use App\Interface\MediasOwnerInterface;
 use App\Models\Media;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +14,7 @@ class MediaRepository extends LaravelBaseRepository
 {
     protected const MODEL = Media::class;
 
-    public function create(User $owner, string $filename, string $type): Media
+    public function create(MediasOwnerInterface|MediaOwnerInterface $owner, string $filename, string $type): Media
     {
         $media = new Media();
         $media->media = $filename;
@@ -24,7 +27,7 @@ class MediaRepository extends LaravelBaseRepository
         return $media;
     }
 
-    public function clear(User $owner, string $mediaType): \Illuminate\Support\Collection
+    public function clear(MediasOwnerInterface|MediaOwnerInterface $owner, string $mediaType): \Illuminate\Support\Collection
     {
         $filenames = $this->getClearBuilder($owner, $mediaType)->pluck('media');
 
@@ -33,7 +36,7 @@ class MediaRepository extends LaravelBaseRepository
         return $filenames;
     }
 
-    private function getClearBuilder(User $owner, string $mediaType): Builder
+    private function getClearBuilder(MediasOwnerInterface|MediaOwnerInterface $owner, string $mediaType): Builder
     {
         return $this->getBuilder()
             ->where('type', $mediaType)

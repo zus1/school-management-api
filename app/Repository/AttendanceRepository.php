@@ -63,7 +63,7 @@ class AttendanceRepository extends SchoolDirectoryBaseRepository
         $from = $this->extract($data, 'from');
         $to = $this->extract($data, 'to');
         $wheres = $this->extractWheres($sanitizedData);
-        
+
         $builder->whereBetween('created_at', [$from, $to]);
         foreach ($wheres as $field => $value) {
             $builder->where($field, $value);

@@ -18,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'inject-user-parent' => \App\Http\Middleware\InjectUserParentMiddleware::class,
             'inject-event' => \App\Http\Middleware\EventInjectMiddleware::class,
             'inject-event-parent' => \App\Http\Middleware\EventInjectParentMiddleware::class,
-            'inject-message-recipient' => \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class
+            'inject-message-recipient' => \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class,
+            'inject-media-owner'=> \App\Http\Middleware\InjectMediaOwnerMiddleware::class
         ]);
         $middleware->appendToGroup('api', [
             \App\Http\Middleware\ConvertResponseKeysToSnakeCase::class,
@@ -29,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\EventInjectMiddleware::class,
             \App\Http\Middleware\EventInjectParentMiddleware::class,
             \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class,
+            \App\Http\Middleware\InjectMediaOwnerMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             //...$middleware->getMiddlewareGroups()['api'],
             //...$middleware->getMiddlewareGroups()['web'],

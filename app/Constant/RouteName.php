@@ -28,7 +28,6 @@ class RouteName
 
     public const ME = 'me';
     public const ME_UPDATE = 'me_update';
-    public const ME_AVATAR = 'me_avatar';
     public const ME_DELETE = 'me_delete';
 
     public const SCHOOL_CLASS_CREATE = 'school_class_create';
@@ -91,4 +90,48 @@ class RouteName
     public const ATTENDANCE_DELETE = 'attendance_delete';
     public const ATTENDANCES = 'attendances';
     public const ATTENDANCES_AGGREGATE = 'attendances_aggregate';
+
+    public const GRADING_RULE_CREATE = 'grading_rule_create';
+    public const GRADING_RULE_UPDATE = 'grading_rule_update';
+    public const GRADING_RULE_DELETE = 'grading_rule_delete';
+    public const GRADING_RULES = 'grading_rules';
+    public const GRADING_RULE = 'grading_rule';
+
+    public const GRADE_RANGE_CREATE = 'grade_range_create';
+    public const GRADE_RANGE_UPDATE = 'grade_rang_update';
+    public const GRADE_RANGE_DELETE = 'grade_range_delete';
+
+    public const EXAM_CREATE = 'exam_create';
+    public const EXAM_UPDATE = 'exam_update';
+    public const EXAM_DELETE = 'exam-delete';
+    public const EXAM = 'exam';
+    public const EXAMS = 'exams';
+    public const EXAM_TOGGLE_GRADING_RULE = 'exam_toggle_grading_rule';
+    public const EXAM_TOGGLE_ALLOWED_SCHOOL_CLASS = 'exam_toggle_allowed_school_class';
+
+    public const QUESTIONS_CREATE = 'questions_create';
+    public const QUESTION_UPDATE = 'question_update';
+    public const QUESTION_DELETE = 'question_delete';
+    public const QUESTION = 'question';
+    public const QUESTIONS = 'questions';
+    public const QUESTION_CHANGE_EXAM = 'question_change_exam';
+
+    public const ANSWER_UPDATE = 'answer_update';
+    public const ANSWER_DELETE = 'answer_delete';
+    public const ANSWER_CHANGE_QUESTION = 'answer_change_question';
+
+    public const MEDIA_UPLOAD = 'media_upload';
+
+    public const EXAM_SESSION_CREATE = 'exam_session_create';
+    public const EXAM_SESSION_DELETE = 'exam_session_delete';
+    public const EXAM_SESSION_FINISH = 'exam_session_finish';
+    public const EXAM_SESSION_GRADE = 'exam_session_grade';
+    public const EXAM_SESSION = 'exam_session';
+    public const EXAM_SESSIONS = 'exam_sessions';
+
+    public const EXAM_RESPONSE_CREATE = 'exam_response_create';
+    public const EXAM_RESPONSE_UPDATE = 'exam_response_update';
+    public const EXAM_RESPONSE_DELETE = 'exam_response_delete';
+    public const EXAM_RESPONSE = 'exam_response';
+    public const EXAM_RESPONSES = 'exam_responses';
 }

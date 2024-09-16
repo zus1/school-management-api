@@ -20,7 +20,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'subject:create', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
         'subject:nestedExamEventRetrieve', 'subject:retrieve', 'subject:collection', 'subject:toggleLecturer',
         'subject:nestedTeacherSubjectRetrieve', 'subject:nestedGradeCreate', 'subject:nestedGradeCollection',
-        'subject:nestedAttendanceCreate', 'subject:nestedAttendanceCollection', 'subject:nestedAttendanceAggregate'
+        'subject:nestedAttendanceCreate', 'subject:nestedAttendanceCollection', 'subject:nestedAttendanceAggregate',
+        'subject:nestedExamCreate', 'subject:nestedExamUpdate', 'subject:nestedExamRetrieve'
     ],
     ['name',
         'subject:create', 'subject:update', 'subject:nestedExamEventCreate', 'subject:nestedExamEventUpdate',
@@ -28,7 +29,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'subject:nestedTeacherSubjectRetrieve', 'subject:nestedTeacherSubjectCollection',
         'subject:toggleLecturerClasses', 'subject:toggleLecturer', 'subject:nestedGradeCreate',
         'subject:nestedGradeCollection', 'subject:nestedAttendanceCreate', 'subject:nestedAttendanceCollection',
-        'subject:nestedAttendanceAggregate'
+        'subject:nestedAttendanceAggregate', 'subject:nestedExamCreate', 'subject:nestedExamUpdate',
+        'subject:nestedExamRetrieve'
     ],
     ['description', 'subject:create', 'subject:update', 'subject:retrieve', 'subject:nestedTeacherSubjectRetrieve'],
     ['is_elective',

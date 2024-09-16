@@ -14,8 +14,13 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $type
  */
 #[Attributes([
-    ['media', 'media:nestedUserMe', 'media:nestedStudentRetrieve', 'media:nestedTeacherRetrieve', 'media:nestedGuardianRetrieve'],
-    ['type', 'media:nestedUserMe'],
+    ['id', 'media:upload'],
+    ['media',
+        'media:nestedStudentRetrieve', 'media:nestedTeacherRetrieve', 'media:nestedGuardianRetrieve', 'media:upload',
+        'media:nestedQuestionRetrieve'
+    ],
+    ['type', 'media:upload', 'media:nestedQuestionRetrieve'],
+    ['mediaOwner', 'mediaUpload']
 ])]
 class Media extends Model
 {
@@ -28,5 +33,6 @@ class Media extends Model
 
     public $dispatchesEvents = [
         'retrieved' => MediaRetrieved::class,
+        'created' => MediaRetrieved::class,
     ];
 }
