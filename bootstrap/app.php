@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->appendToGroup('api', [
             \App\Http\Middleware\ConvertResponseKeysToSnakeCase::class,
+            \App\Http\Middleware\ActivityTracking::class,
         ]);
         $middleware->priority([
             //...$middleware->getGlobalMiddleware(),
@@ -32,6 +33,8 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\MessageInjectRecipientParentMiddleware::class,
             \App\Http\Middleware\InjectMediaOwnerMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Zus1\LaravelAuth\Middleware\CustomAuth::class,
+            \App\Http\Middleware\ActivityTracking::class,
             //...$middleware->getMiddlewareGroups()['api'],
             //...$middleware->getMiddlewareGroups()['web'],
         ]);

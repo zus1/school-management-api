@@ -84,6 +84,7 @@ class RouteName
     public const GRADE_UPDATE = 'grade_update';
     public const GRADE_DELETE = 'grade_delete';
     public const GRADES = 'grades';
+    public const GRADES_TOP_AVERAGE = 'grades_top_average';
 
     public const ATTENDANCE_CREATE = 'attendance_create';
     public const ATTENDANCE_UPDATE = 'attendance_update';
@@ -134,4 +135,8 @@ class RouteName
     public const EXAM_RESPONSE_DELETE = 'exam_response_delete';
     public const EXAM_RESPONSE = 'exam_response';
     public const EXAM_RESPONSES = 'exam_responses';
+
+    public const ANALYTICS_GRADES_CHART = 'analytics_grades_chart';
+
+    public const ACTIVITY_TRACKINGS = 'activity_trackings';
 }

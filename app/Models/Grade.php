@@ -17,16 +17,18 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $grade
  * @property string $comment
  * @property bool $is_final
+ * @property float $avg
  */
 #[Attributes([
     ['id', 'grade:create', 'grade:collection'],
     ['grade', 'grade:create', 'grade:update', 'grade:collection'],
     ['comment', 'grade:create', 'grade:update', 'grade:collection'],
     ['is_final', 'grade:create', 'grade:collection', 'grade:update'],
-    ['teacher', 'grade:create', 'grade:collection'],
-    ['student', 'grade:create', 'grade:collection'],
-    ['schoolClass', 'grade:create', 'grade:collection'],
-    ['subject', 'grade:create', 'grade:collection'],
+    ['avg', 'grade:topAverage'],
+    ['teacher', 'grade:create', 'grade:collection', 'grade:topAverage'],
+    ['student', 'grade:create', 'grade:collection', 'grade:topAverage'],
+    ['schoolClass', 'grade:create', 'grade:collection', 'grade:topAverage'],
+    ['subject', 'grade:create', 'grade:collection', 'grade:topAverage'],
 ])]
 class Grade extends Model implements SchoolDirectoryInterface
 {

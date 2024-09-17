@@ -157,6 +157,7 @@ return [
             RouteName::EXAM_SESSION_GRADE => 'grade',
             RouteName::EXAM_SESSION => 'retrieve',
             RouteName::EXAM_SESSIONS => 'collection',
+            RouteName::ACTIVITY_TRACKINGS => 'collection',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
@@ -196,6 +197,7 @@ return [
             RouteName::EXAM_RESPONSES => \App\Models\ExamResponse::class,
             RouteName::EXAM_SESSION_CREATE => \App\Models\ExamSession::class,
             RouteName::EXAM_SESSIONS => \App\Models\ExamSession::class,
+            RouteName::ACTIVITY_TRACKINGS => \App\Models\ActivityTracking::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

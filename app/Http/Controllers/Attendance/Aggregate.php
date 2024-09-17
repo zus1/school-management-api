@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Attendance;
 
-use App\Http\Controllers\BaseSchoolDirectoryCollectionController;
+use App\Http\Controllers\CustomBaseCollectionController;
 use App\Http\Requests\AttendanceRequest;
 use App\Repository\AttendanceRepository;
 use Illuminate\Http\JsonResponse;
 use Zus1\Serializer\Facade\Serializer;
 
-class Aggregate extends BaseSchoolDirectoryCollectionController
+class Aggregate extends CustomBaseCollectionController
 {
     public function __construct(
         private AttendanceRepository $repository,
@@ -18,7 +18,7 @@ class Aggregate extends BaseSchoolDirectoryCollectionController
 
     public function __invoke(AttendanceRequest $request): JsonResponse
     {
-        $this->setCollectionRelations();
+        $this->authRelationFilters->setForController($this);
 
         $aggregated = $this->repository->aggregate(
             $request->input(),
