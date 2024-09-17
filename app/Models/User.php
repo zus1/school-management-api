@@ -51,7 +51,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
         'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
-        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
+        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve', 'teacher:nestedTopAverageGrades',
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -69,7 +70,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'student:nestedGradeCollection', 'teacher:nestedAttendanceCreate', 'student:nestedAttendanceCreate',
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
         'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
-        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
+        'student:nestedExamCollection', 'student:nestedExamSessionRetrieve', 'teacher:nestedTopAverageGrades',
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',

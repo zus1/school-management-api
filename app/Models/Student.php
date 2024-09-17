@@ -23,7 +23,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'student:create', 'student:onboard', 'user:me', 'student:retrieve',
         'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection',
         'student:nestedAttendanceCreate', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'mediaOwner:nestedMediaUpload', 'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
+        'mediaOwner:nestedMediaUpload', 'student:nestedExamCollection', 'student:nestedExamSessionRetrieve',
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
     ],
     ['onboarded_at', 'student:onboard', 'student:retrieve'],
     ['last_change_at', 'student:update'],
@@ -31,7 +32,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'student:create', 'student:onboard', 'user:me', 'student:update', 'student:retrieve',
         'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection',
         'student:nestedAttendanceCreate', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
-        'mediaOwner:nestedMediaUpload', 'student:nestedExamCollection', 'student:nestedExamSessionRetrieve'
+        'mediaOwner:nestedMediaUpload', 'student:nestedExamCollection', 'student:nestedExamSessionRetrieve',
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
     ],
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]

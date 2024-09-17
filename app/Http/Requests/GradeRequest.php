@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Constant\Analytics\DatePeriod;
+use App\Constant\Analytics\DateUnit;
 use App\Constant\RouteName;
 use App\Http\Requests\Rules\SchoolDirectoryRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GradeRequest extends FormRequest
@@ -37,6 +40,12 @@ class GradeRequest extends FormRequest
         if($this->route()->action['as'] === RouteName::GRADE_UPDATE) {
             return $this->sharedRules();
         }
+        if($this->route()->action['as'] === RouteName::ANALYTICS_GRADES_CHART) {
+            return $this->analyticsRules();
+        }
+        if($this->route()->action['as'] === RouteName::GRADES_TOP_AVERAGE) {
+            return $this->analyticsRules(isStudentRequired: true);
+        }
 
         throw new HttpException(422, 'Unprocessable entity');
     }
@@ -56,5 +65,37 @@ class GradeRequest extends FormRequest
             'grade' => 'required|integer|max:5|min:1',
             'comment' => 'string|max:1000',
         ];
+    }
+
+    private function analyticsRules(bool $isStudentRequired = false): array
+    {
+        $rules = [
+            'student_id' => 'int|exists:students,id',
+            'teacher_id' => 'int|exists:teachers,id',
+            'subject_id' => 'int|exists:subjects,id',
+            'school_class_id' => 'int|exists:school_classes,id',
+            'from' => 'string|date',
+            'to' => 'string|date',
+            'unit' => [
+                'string',
+                Rule::in(DateUnit::getValues()),
+            ],
+            'period' => [
+                'string',
+                Rule::in(DatePeriod::getValues()),
+            ],
+        ];
+
+        if($this->input('period') === null) {
+            $rules['from'] .= '|required';
+            $rules['to'] .= '|required';
+            $rules['unit'] .= '|required';
+        }
+
+        if($isStudentRequired === true) {
+            $rules['student_id'] .= '|required';
+        }
+
+        return $rules;
     }
 }

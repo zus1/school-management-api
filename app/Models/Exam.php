@@ -113,6 +113,6 @@ class Exam extends Model
 
     public function isSchoolClassAllowed(string $schoolClass):  bool
     {
-        return in_array($schoolClass, $this->school_classes_allowed_access);
+        return in_array($schoolClass, $this->school_classes_allowed_access ?? []);
     }
 }

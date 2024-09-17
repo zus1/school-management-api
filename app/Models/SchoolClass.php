@@ -14,13 +14,14 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $name
  * @property int $teacher_id
  * @property int $school_year_id
+ * @property array $students
  */
 #[Attributes([
     ['id',
         'schoolClass:create', 'classroomNestedSubjectEventRetrieve', 'schoolClass:nestedExamEventCreate',
         'schoolClass:nestedExamEventRetrieve', 'schoolClass:nestedSubjectTeacherRetrieve', 'schoolClass:nestedGradeCreate',
         'schoolClass:nestedGradeCollection', 'schoolClass:nestedAttendanceCreate', 'schoolClass:nestedAttendanceCollection',
-        'schoolClass:nestedAttendanceAggregate'
+        'schoolClass:nestedAttendanceAggregate', 'schoolClass:nestedTopAverageGrades'
     ],
     ['name',
         'schoolClass:create', 'schoolClass:update', 'schoolClass:nestedSubjectEventCreate',
@@ -28,7 +29,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'schoolClass:nestedExamEventCreate', 'schoolClass:nestedExamEventRetrieve',
         'schoolClass:nestedSubjectTeacherRetrieve', 'schoolClass:nestedTeacherSubjectCollection',
         'schoolClass:nestedGradeCreate', 'schoolClass:nestedGradeCollection', 'schoolClass: nestedAttendanceCreate',
-        'schoolClass:nestedAttendanceCollection', 'schoolClass:nestedAttendanceAggregate'
+        'schoolClass:nestedAttendanceCollection', 'schoolClass:nestedAttendanceAggregate', 'schoolClass:nestedTopAverageGrades'
     ],
     ['teacher', 'schoolClass:create', 'schoolClass:update'],
     ['schoolYear',

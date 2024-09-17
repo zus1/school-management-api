@@ -187,7 +187,7 @@ Route::middleware('custom-auth')->group(function () {
         Route::delete('/grades/{grade}', \App\Http\Controllers\Grade\Delete::class)
             ->name(RouteName::GRADE_DELETE)
             ->where('grade', '[0-9]+');
-        Route::get('/grades', \App\Http\Controllers\Grade\RetrieveCollection::class)
+        Route::get('/grades', \App\Http\Controllers\Grade\RetrieveCollectionCustom::class)
             ->name(RouteName::GRADES);
 
         Route::post('/attendances', \App\Http\Controllers\Attendance\Create::class)
@@ -198,7 +198,7 @@ Route::middleware('custom-auth')->group(function () {
         Route::delete('/attendances/(attendance}', \App\Http\Controllers\Attendance\Delete::class)
             ->name(RouteName::ATTENDANCE_DELETE)
             ->where('grade', '[0-9]+');
-        Route::get('/attendances', \App\Http\Controllers\Attendance\RetrieveCollection::class)
+        Route::get('/attendances', \App\Http\Controllers\Attendance\RetrieveCollectionCustom::class)
             ->name(RouteName::ATTENDANCES);
         Route::get('/attendances/aggregate', \App\Http\Controllers\Attendance\Aggregate::class)
             ->name(RouteName::ATTENDANCES_AGGREGATE);
@@ -319,9 +319,13 @@ Route::middleware('custom-auth')->group(function () {
         Route::get('exam-responses/{examResponse}', \App\Http\Controllers\ExamResponse\Retrieve::class)
             ->name(RouteName::EXAM_RESPONSE)
             ->where('examResponse', '[0-9]+');
+
+        Route::get('/analytics/grades-chart', \App\Http\Controllers\Grade\GradesChart::class)
+            ->name(RouteName::ANALYTICS_GRADES_CHART);
     });
 
-
+    Route::get('/grades/top-average', \App\Http\Controllers\Grade\TopAverage::class)
+        ->name(RouteName::GRADES_TOP_AVERAGE);
 
     Route::get('/me', \App\Http\Controllers\Me\Me::class)
         ->name(RouteName::ME);

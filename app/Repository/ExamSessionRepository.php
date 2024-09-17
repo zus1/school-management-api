@@ -22,8 +22,8 @@ class ExamSessionRepository extends LaravelBaseRepository
         $startedAt = Carbon::now();
 
         $examSession = new ExamSession();
-        $examSession->started_at = $startedAt;
-        $examSession->ends_at = $startedAt->addMinutes($exam->duration);
+        $examSession->started_at = $startedAt->format('Y-m-d H:i:s');
+        $examSession->ends_at = $startedAt->addMinutes($exam->duration)->format('Y-m-d H:i:s');
         $examSession->status = ExamSessionStatus::IN_PROGRESS;
 
         $this->associateStudent($examSession);

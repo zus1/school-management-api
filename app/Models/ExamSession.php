@@ -43,6 +43,8 @@ class ExamSession extends Model
 {
     use HasFactory, DateTimeMutator, MassUpdatable;
 
+    public $timestamps = false;
+
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_id', 'id');
@@ -56,20 +58,5 @@ class ExamSession extends Model
     public function examResponses(): HasMany
     {
         return $this->hasMany(ExamResponse::class, 'exam_session_id', 'id');
-    }
-
-    public function startedAt(): Attribute
-    {
-        return $this->mutateDateTime();
-    }
-
-    public function endsAt(): Attribute
-    {
-        return $this->mutateDateTime();
-    }
-
-    public function endedAt(): Attribute
-    {
-        return $this->mutateDateTime();
     }
 }
