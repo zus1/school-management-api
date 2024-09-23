@@ -139,4 +139,15 @@ class RouteName
     public const ANALYTICS_GRADES_CHART = 'analytics_grades_chart';
 
     public const ACTIVITY_TRACKINGS = 'activity_trackings';
+
+    public const PAYMENT_CREATE = 'payment_create';
+    public const PAYMENT_SUCCESS = 'payment_success';
+    public const PAYMENT_CANCEL = 'payment_cancel';
+    public const PAYMENT_WEBHOOK = 'payment_webhook';
+    public const PAYMENT = 'payment';
+    public const PAYMENTS = 'payments';
+
+    public const PRODUCT_WEBHOOK = 'product_webhook';
+    public const PRODUCT = 'product';
+    public const PRODUCTS = 'products';
 }

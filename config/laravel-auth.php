@@ -158,12 +158,16 @@ return [
             RouteName::EXAM_SESSION => 'retrieve',
             RouteName::EXAM_SESSIONS => 'collection',
             RouteName::ACTIVITY_TRACKINGS => 'collection',
+            RouteName::PRODUCT => 'retrieve',
+            RouteName::PRODUCTS => 'collection',
+            RouteName::PAYMENT => 'retrieve',
+            RouteName::PAYMENTS => 'collection',
         ],
         'possible_route_parameters' => [
             'student', 'teacher', 'guardian', 'user', 'calendar', 'recipient', 'grade',
             'event', 'classroom', 'subject', 'teacherSubject', 'equipment', 'message',
             'attendance', 'gradingRule', 'gradeRange', 'exam', 'question', 'answer',
-            'examResponse', 'examSession',
+            'examResponse', 'examSession', 'product', 'payment',
         ],
         'additional_subjects' => [
             RouteName::STUDENT_CREATE => \App\Models\Student::class,
@@ -198,6 +202,8 @@ return [
             RouteName::EXAM_SESSION_CREATE => \App\Models\ExamSession::class,
             RouteName::EXAM_SESSIONS => \App\Models\ExamSession::class,
             RouteName::ACTIVITY_TRACKINGS => \App\Models\ActivityTracking::class,
+            RouteName::PRODUCTS => \App\Models\Product::class,
+            RouteName::PAYMENTS => \App\Models\Payment::class,
         ],
         'subject_overrides' => [
             RouteName::ME_DELETE => \App\Models\Guardian::class

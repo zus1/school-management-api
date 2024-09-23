@@ -111,4 +111,16 @@ class Teacher extends User
     {
         return $this->hasMany(GradingRule::class, 'teacher_id', 'id');
     }
+
+    public function guardians(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Guardian::class,
+            Student::class,
+            'teacher_id',
+            'id',
+            'id',
+            'guardian_id',
+        );
+    }
 }

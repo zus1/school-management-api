@@ -322,7 +322,26 @@ Route::middleware('custom-auth')->group(function () {
 
         Route::get('/analytics/grades-chart', \App\Http\Controllers\Grade\GradesChart::class)
             ->name(RouteName::ANALYTICS_GRADES_CHART);
+
+        Route::get('/products', \App\Http\Controllers\Product\RetrieveCollection::class)
+            ->name(RouteName::PRODUCTS);
+        Route::get('/products/{product}', \App\Http\Controllers\Product\Retrieve::class)
+            ->name(RouteName::PRODUCT)
+            ->where('product', '[0-9]+');
+
+        Route::get('/payments', \App\Http\Controllers\Payment\RetrieveCollection::class)
+            ->name(RouteName::PAYMENTS);
+        Route::get('/payments/{payment}', \App\Http\Controllers\Payment\Retrieve::class)
+            ->name(RouteName::PAYMENTS)
+            ->where('payment', '[0-9]+');
     });
+
+    Route::post('/payments', \App\Http\Controllers\Payment\Create::class)
+        ->name(RouteName::PAYMENT_CREATE);
+    Route::get('/payments/success', \App\Http\Controllers\Payment\Success::class)
+        ->name(RouteName::PAYMENT_SUCCESS);
+    Route::get('/payments/cancel', \App\Http\Controllers\Payment\Cancel::class)
+        ->name(RouteName::PAYMENT_CANCEL);
 
     Route::get('/grades/top-average', \App\Http\Controllers\Grade\TopAverage::class)
         ->name(RouteName::GRADES_TOP_AVERAGE);
@@ -351,3 +370,8 @@ Route::prefix('auth')->group(function () {
     Route::get('/verify-phone', \App\Http\Controllers\Auth\VerifyPhone::class)
         ->name(RouteName::AUTH_VERIFY_PHONE);
 });
+
+Route::post('payments/webhook', \App\Http\Controllers\Payment\Webhook::class)
+    ->name(RouteName::PAYMENT_WEBHOOK);
+Route::post('products/webhook', \App\Http\Controllers\Product\Webhook::class)
+    ->name(RouteName::PRODUCT_WEBHOOK);

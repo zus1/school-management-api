@@ -28,7 +28,7 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $child_id
  */
 #[Attributes([
-    ['id', 'user:register', 'user:me'],
+    ['id', 'user:register', 'user:me', 'user:nestedPaymentRetrieve'],
     ['email',
         'user:register', 'student:create', 'user:me', 'student:retrieve', 'student:collection',
         'teacher:retrieve', 'teacher:collection', 'guardian:retrieve', 'guardian:collection',
@@ -52,7 +52,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
         'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
         'student:nestedExamCollection', 'student:nestedExamSessionRetrieve', 'teacher:nestedTopAverageGrades',
-        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection', 'user:nestedPaymentCollection',
+        'user:nestedPaymentRetrieve'
     ],
     ['last_name',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate',
@@ -71,7 +72,8 @@ use Zus1\Serializer\Attributes\Attributes;
         'teacher:nestedAttendanceCollection', 'student:nestedAttendanceCollection', 'student:nestedAttendanceAggregate',
         'teacher:nestedAttendanceAggregate', 'teacher:nestedExamRetrieve', 'mediaOwner:nestedMediaUpload',
         'student:nestedExamCollection', 'student:nestedExamSessionRetrieve', 'teacher:nestedTopAverageGrades',
-        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection'
+        'student:nestedTopAverageGrades', 'student:nestedActivityTrackingCollection', 'user:nestedPaymentCollection',
+        'user:nestedPaymentRetrieve'
     ],
     ['gender',
         'user:register', 'student:onboard', 'user:me', 'user:meUpdate', 'student:update',
@@ -165,5 +167,10 @@ class User extends Authenticatable implements CanBeActiveInterface, MediasOwnerI
         $child = $this->child()->first();
 
         return $child->id;
+    }
+
+    public function payments(): hasMany
+    {
+        return $this->hasMany(Payment::class, 'user_id', 'id');
     }
 }

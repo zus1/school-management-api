@@ -9,19 +9,22 @@ use App\Models\SchoolClass;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use App\Repository\UserRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRelationFilters
 {
     private User $auth;
+    private User $parent;
 
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
         /** @var User $user */
         $user = Auth::user();
 
         $this->auth = $user;
+        $this->parent = $userRepository->findAuthParent();
     }
 
     public function setForController(CustomBaseCollectionController $controller): void
@@ -120,6 +123,42 @@ class AuthRelationFilters
                     'relation' => 'student',
                     'field' => 'id',
                     'value' => $student->id,
+                ]);
+            }
+        }
+    }
+
+    public function setForRetrievePaymentsCollectionController(CustomBaseCollectionController $controller): void
+    {
+        if($this->auth->hasRole(Roles::ADMIN)) {
+            return;
+        }
+
+
+        $controller->customAddCollectionRelation([
+            'relation' => 'user',
+            'field' => 'id',
+            'value' => $this->parent->id,
+        ]);
+
+        if($this->auth instanceof Teacher && $this->auth->hasRole(Roles::TEACHER)) {
+            $students = $this->auth->students()->with('parent')->get();
+            /** @var Student $student */
+            foreach ($students as $student) {
+                $controller->customAddCollectionRelation([
+                    'relation' => 'user',
+                    'column' => 'id',
+                    'value' => $student->parent->id
+                ]);
+            }
+
+            $guardians = $this->auth->guardians()->with('parent')->get();
+            /** @var Guardian $guardian */
+            foreach ($guardians as $guardian) {
+                $controller->customAddCollectionRelation([
+                    'relation' => 'user',
+                    'column' => 'id',
+                    'value' => $guardian->parent->id
                 ]);
             }
         }
