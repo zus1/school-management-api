@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\User;
 use App\Trait\CanActivateModel;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -66,6 +67,28 @@ class UserRepository extends LaravelBaseRepository
         }
 
         return $user;
+    }
+
+    public function findChildByParent(User $parent): User
+    {
+        try {
+            $child = $parent->child()->first();
+        } catch (ModelNotFoundException) {
+            return $parent; //No child, only if parent is admin
+        }
+
+        return $child;
+    }
+
+    public function findParentByChild(User $child): User
+    {
+        try {
+            $parent = $child->parent()->first();
+        } catch (ModelNotFoundException) {
+            return $child; //No parent, only if child is admin
+        }
+
+        return $parent;
     }
 
     protected function registerBaseProperties(User $user, array $data): void

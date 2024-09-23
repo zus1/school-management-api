@@ -17,6 +17,7 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $onboarded_at
  * @property string $last_change_at
  * @property int $guardian_id
+ * @property User $parent
  */
 #[Attributes([
     ['id',

@@ -71,6 +71,18 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'payment' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/payment.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
+        'product' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/product.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'calendar_event' => [
             'driver' => 'single',
             'path' => storage_path('logs/calendar-event.log'),

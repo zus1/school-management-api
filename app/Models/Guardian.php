@@ -13,6 +13,7 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $street
  * @property string $occupation
  * @property string $city
+ * @property User $parent
  */
 #[Attributes([
     ['id', 'user:register', 'user:me', 'guardian:retrieve', 'guardian:collection', 'mediaOwner:nestedMediaUpload'],
