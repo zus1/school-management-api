@@ -336,8 +336,9 @@ Route::middleware('custom-auth')->group(function () {
             ->where('payment', '[0-9]+');
     });
 
-    Route::post('/payments', \App\Http\Controllers\Payment\Create::class)
-        ->name(RouteName::PAYMENT_CREATE);
+    Route::post('/payments/{product}', \App\Http\Controllers\Payment\Create::class)
+        ->name(RouteName::PAYMENT_CREATE)
+        ->where('product', '[0-9]+');
     Route::get('/payments/success', \App\Http\Controllers\Payment\Success::class)
         ->name(RouteName::PAYMENT_SUCCESS);
     Route::get('/payments/cancel', \App\Http\Controllers\Payment\Cancel::class)

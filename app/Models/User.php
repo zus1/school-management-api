@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Interface\CanBeActiveInterface;
 use App\Interface\MediasOwnerInterface;
+use Iksaku\Laravel\MassUpdate\MassUpdatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -23,9 +24,10 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $gender
  * @property string $dob
  * @property string $phone
- * @property int $active
+ * @property bool $active
  * @property int $phone_verified
  * @property int $child_id
+ * @method static massUpdate(array $objects)
  */
 #[Attributes([
     ['id', 'user:register', 'user:me', 'user:nestedPaymentRetrieve'],
@@ -100,7 +102,7 @@ use Zus1\Serializer\Attributes\Attributes;
 ])]
 class User extends Authenticatable implements CanBeActiveInterface, MediasOwnerInterface
 {
-    use HasFactory, Notifiable, Discriminator, Token;
+    use HasFactory, Notifiable, Discriminator, Token, MassUpdatable;
 
     /**
      * The attributes that should be hidden for serialization.

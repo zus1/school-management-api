@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +18,7 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property string $last_change_at
  * @property int $guardian_id
  * @property User $parent
+ * @property Guardian $guardian
  */
 #[Attributes([
     ['id',
@@ -29,6 +30,8 @@ use Zus1\Serializer\Attributes\Attributes;
     ],
     ['onboarded_at', 'student:onboard', 'student:retrieve'],
     ['last_change_at', 'student:update'],
+    ['is_tuition_paid', 'student:retrieve'],
+    ['tuitions', 'student:retrieve'],
     ['parent',
         'student:create', 'student:onboard', 'user:me', 'student:update', 'student:retrieve',
         'student:collection', 'user:nestedEventToggleNotify', 'student:nestedGradeCreate', 'student:nestedGradeCollection',
@@ -106,5 +109,23 @@ class Student extends User
     public function examSessions(): HasMany
     {
         return $this->hasMany(ExamSession::class, 'student_id', 'id');
+    }
+
+    public function tuitions(bool $paidOnly = true): HasMany
+    {
+        $relation = $this->hasMany(Tuition::class, 'student_id', 'id');
+
+        if($paidOnly === false) {
+            $relation->whereNotNull('last_paid');
+        }
+
+        return $relation;
+    }
+
+    public function isTuitionPaid(?string $year = ''): bool
+    {
+        $year = $year ?? Carbon::now()->format('Y');
+
+        return $this->tuitions()->where('last_paid', $year)->exists();
     }
 }

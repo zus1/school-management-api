@@ -3,6 +3,7 @@
 namespace App\Services\Stripe;
 
 use App\Constant\Payment\PaymentStatus;
+use App\Events\PaymentOccurred;
 use App\Models\Guardian;
 use App\Models\Payment;
 use App\Models\Product;
@@ -74,6 +75,8 @@ class Checkout
         $dbPayment = $this->repository->updateOnSuccess($dbPayment, $session, pendingInvoice: $session->invoice === null);
 
         $this->handleInvoice($session, $dbPayment);
+
+        PaymentOccurred::dispatch($dbPayment);
 
         return $dbPayment;
     }
