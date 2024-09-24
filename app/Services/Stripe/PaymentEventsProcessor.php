@@ -5,6 +5,7 @@ namespace App\Services\Stripe;
 
 use App\Constant\Payment\PaymentFlowStatus;
 use App\Constant\Payment\PaymentStatus;
+use App\Events\PaymentOccurred;
 use App\Interface\WebhookProcessorInterface;
 use App\Models\Payment;
 use App\Repository\InvoiceRepository;
@@ -57,6 +58,8 @@ class PaymentEventsProcessor implements WebhookProcessorInterface
         $dbPayment = $this->fetchOngoingPayment($session->id);
 
         $this->repository->updateOnSuccess($dbPayment, $session, pendingInvoice: true);
+
+        PaymentOccurred::dispatch($dbPayment);
     }
 
     private function processFailedPayment(Session $session): void

@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Zus1\LaravelAuth\Helper\TokenHelper;
@@ -17,6 +18,7 @@ class StudentRepository extends UserRepository implements CanUpdateUserInterface
 {
     public function __construct(
         private TokenHelper $tokenHelper,
+        private TuitionRepository $tuitionRepository,
     ){
     }
 
@@ -35,6 +37,8 @@ class StudentRepository extends UserRepository implements CanUpdateUserInterface
         $this->associateSchoolClass($student);
 
         $student->save();
+
+        $this->tuitionRepository->createUnpaid($student);
 
         return $student;
     }
@@ -60,6 +64,13 @@ class StudentRepository extends UserRepository implements CanUpdateUserInterface
         $student->save();
 
         return $student;
+    }
+
+    public function handleYearlyTuitionCreate(int $chunkSize, array $callback): void
+    {
+        $this->getBuilder()->whereRelation('parent','active', true)
+            ->with('guardian')
+            ->chunk($chunkSize, $callback);
     }
 
     private function associateSchoolClass(Student $student): void
